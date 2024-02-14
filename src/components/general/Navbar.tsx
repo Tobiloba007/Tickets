@@ -14,7 +14,7 @@ const Navbar: React.FC<ImageComponentProps> = () => {
     const [open, ssetOpen] = useState<boolean>(false);
 
   return (
-    <div className={`flex-col items-start justify-between w-full bg-white pt-8 pb-5 px-6 shadow-md ${open ? 'h-[100vh]' : "h-[95px]"} lg:h-[100px] xl:px-12`}>
+    <div className={`flex-col items-center justify-between w-full bg-white pt-5 pb-5 px-6 shadow-md ${open ? 'h-screen fixed z-[200] overflow-hidden' : "h-[95px]"} md:px-8 lg:h-[100px] lg:px-10 xl:px-16`}>
       <div className='flex items-center justify-between w-full'>
       <img className='w-[112px] h-322px] lg:w-[160px] lg:h-[40px] xl:w-[168px] xl:h-[48px]'
       src={logo} alt='logo' />

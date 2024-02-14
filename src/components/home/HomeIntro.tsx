@@ -27,8 +27,9 @@ const HomeIntro = (props: Props) => {
         </div>
 
 
-        <div className='flex flex-row items-end justify-center h-[512px] bg-cover bg-center  rounded-3xl w-[80%] px-5 pb-8 absolute bottom-[-27rem] md:bottom-[-21rem] md:w-[90%] 
-        md:h-[460px] md:rounded-[12px] lg:h-[450px] lg:bottom-[-21rem] lg:px-8 xl:h-[550px] xl:bottom-[-28rem] xl:w-[90%] xl:px-10 xl:pb-9' style={{backgroundImage: `url(${carousel1})`}}>
+
+        <div className='flex flex-row items-end justify-center h-[512px] bg-cover bg-center rounded-3xl w-[88%] px-3 pb-8 absolute bottom-[-28rem] md:bottom-[-21rem] md:w-[92%] 
+        md:h-[460px] md:rounded-[12px] lg:h-[450px] lg:bottom-[-21rem] lg:px-8 xl:h-[550px] xl:bottom-[-28rem] xl:w-[91%] xl:px-10 xl:pb-9' style={{backgroundImage: `url(${carousel1})`}}>
             <div className="absolute inset-0 bg-black opacity-20 rounded-3xl md:rounded-[12px]"></div>
             <div className='flex flex-row items-center justify-between w-full z-50'>
                 <div>
