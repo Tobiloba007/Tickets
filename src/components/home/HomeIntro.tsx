@@ -1,9 +1,14 @@
 import bg from '../../assets/introBg.svg'
 import carousel1 from '../../assets/carousel1.jpg'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Autoplay, Pagination } from 'swiper/modules';
 
 type Props = {}
 
 const HomeIntro = (props: Props) => {
+      
   return (
     <div className='flex flex-col items-center justify-start w-full h-screen bg-cover bg-center px-6 rounded-b-3xl md:rounded-b-[0px] lg:rounded-b-[40px]' 
     style={{backgroundImage: `url(${bg})`}}
@@ -17,7 +22,7 @@ const HomeIntro = (props: Props) => {
             </p>
         </div>
 
-        <div className='flex flex-col justify-center items-center w-full mt-14 px-6 md:flex-row'>
+        <div className='flex flex-col justify-center items-center w-full mt-14 px-6 md:flex-row mb-14 lg:mb-16 xl:mb-24'>
             <button className='text-center text-[17px] font-semibold text-[#571845] bg-[#EEE8EC] h-[45px] w-full rounded-[9px] md:w-[180px] xl:w-[200px]'>
                  Host an event 
             </button>
@@ -28,27 +33,69 @@ const HomeIntro = (props: Props) => {
 
 
 
-        <div className='flex flex-row items-end justify-center h-[512px] bg-cover bg-center rounded-3xl w-[88%] px-3 pb-8 absolute bottom-[-28rem] md:bottom-[-21rem] md:w-[92%] 
-        md:h-[460px] md:rounded-[12px] lg:h-[450px] lg:bottom-[-21rem] lg:px-8 xl:h-[550px] xl:bottom-[-28rem] xl:w-[91%] xl:px-10 xl:pb-9' style={{backgroundImage: `url(${carousel1})`}}>
-            <div className="absolute inset-0 bg-black opacity-20 rounded-3xl md:rounded-[12px]"></div>
-            <div className='flex flex-row items-center justify-between w-full z-50'>
-                <div>
-                    <p className='text-[11px] font-bold text-white xl:text-[15px]'>
-                        Thurs Dec 21st, 2023
-                    </p>
-                    <p className='text-[20px] font-semibold text-white lg:text-[27px] xl:text-[30px]'>
-                        Soundland Concert
-                    </p>
-                </div>
-            </div>
+        <div className='w-full md:px-2 lg:px-4 xl:px-10'
+        >
+            <Swiper
+                spaceBetween={30}
+                centeredSlides={true}
+                autoplay={{
+                  delay: 1500,
+                  disableOnInteraction: false,
+                }}
+                pagination={{
+                  clickable: true,
+                }}
+                modules={[Autoplay, Pagination]}
+                className="flex flex-row items-center justify-center w-full"
+              >
+                <SwiperSlide className='relative flex items-center justify-center w-full'>
+                    <img className='h-[490px] rounded-3xl w-full object-cover xl:h-full'
+                    src={carousel1} alt="carousel1" />
+                    <div className='absolute bottom-5 left-4 flex flex-col items-start justify-center w-full z-30 md:left-8 md:bottom-7 lg:left-12 lg:bottom-10'>
+                          <p className='text-[9px] font-bold text-white md:text-xs xl:text-base xl:mb-1'>
+                              Thurs Dec 21st, 2023
+                          </p>
+                          <p className='text-[17px] font-semibold text-white md:text-2xl lg:text-[27px] xl:text-[35px]'>
+                              Soundland Concert
+                          </p>
+                    </div>
+                    <div className="absolute inset-0 bg-gray-900 opacity-30 rounded-3xl"></div>
+                </SwiperSlide>
+                <SwiperSlide className='relative flex items-center justify-center w-full'>
+                    <img className='h-[490px] rounded-3xl w-full object-cover xl:h-full'
+                    src={carousel1} alt="carousel1" />
+                    <div className='absolute bottom-5 left-4 flex flex-col items-start justify-center w-full z-30 md:left-8 md:bottom-7 lg:left-12 lg:bottom-10'>
+                          <p className='text-[9px] font-bold text-white md:text-xs xl:text-base xl:mb-1'>
+                              Thurs Dec 21st, 2023
+                          </p>
+                          <p className='text-[17px] font-semibold text-white md:text-2xl lg:text-[27px] xl:text-[35px]'>
+                              Soundland Concert
+                          </p>
+                    </div>
+                    <div className="absolute inset-0 bg-gray-900 opacity-30 rounded-3xl"></div>
+                </SwiperSlide>
+                <SwiperSlide className='relative flex items-center justify-center w-full'>
+                    <img className='h-[490px] rounded-3xl w-full object-cover xl:h-full'
+                    src={carousel1} alt="carousel1" />
+                    <div className='absolute bottom-5 left-4 flex flex-col items-start justify-center w-full z-30 md:left-8 md:bottom-7 lg:left-12 lg:bottom-10'>
+                          <p className='text-[9px] font-bold text-white md:text-xs xl:text-base xl:mb-1'>
+                              Thurs Dec 21st, 2023
+                          </p>
+                          <p className='text-[17px] font-semibold text-white md:text-2xl lg:text-[27px] xl:text-[35px]'>
+                              Soundland Concert
+                          </p>
+                    </div>
+                    <div className="absolute inset-0 bg-gray-900 opacity-30 rounded-3xl"></div>
+                </SwiperSlide>
+              </Swiper>
 
-            <div className='flex flex-row items-center justify-between mb-2 z-50'>
+            {/* <div className='flex flex-row items-center justify-between mb-2 z-50'>
                 <div className='h-2 w-2 rounded-full bg-[#FFC655] mx-[2.5px] xl:mx-1 xl:w-[10px] xl:h-[10px]'></div>
                 <div className='h-2 w-2 rounded-full bg-white mx-[2.5px] xl:mx-1 xl:w-[10px] xl:h-[10px]'></div>
                 <div className='h-2 w-2 rounded-full bg-white mx-[2.5px] xl:mx-1 xl:w-[10px] xl:h-[10px]'></div>
                 <div className='h-2 w-2 rounded-full bg-white mx-[2.5px] xl:mx-1 xl:w-[10px] xl:h-[10px]'></div>
                 <div className='h-2 w-2 rounded-full bg-white mx-[2.5px] xl:mx-1 xl:w-[10px] xl:h-[10px]'></div>
-            </div>
+            </div> */}
 
         </div>
 

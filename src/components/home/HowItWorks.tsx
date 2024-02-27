@@ -5,7 +5,7 @@ type Props = {}
 
 const HowItWorks = (props: Props) => {
   return (
-    <div className='flex-col items-center justify-center  w-full mt-[27rem] px-6 pb-10 md:mt-[22rem] md:px-8 lg:mt-[21rem] lg:px-10 lg:pb-20 xl:mt-[31rem] xl:px-16'>
+    <div className='flex-col items-center justify-center  w-full mt-[22rem] px-6 pb-10 md:mt-[18rem] md:px-8 lg:mt-[20rem] lg:px-10 lg:pb-20 xl:mt-[38rem] xl:px-16'>
         <p className='text-[28px] font-semibold text-[#571845] text-center md:text-[32px] lg:text-[37px] xl:text-[45px]'>
             How it Works 
         </p>

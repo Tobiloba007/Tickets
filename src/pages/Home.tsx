@@ -13,7 +13,7 @@ type Props = {}
 
 const Home = (props: Props) => {
   return (
-    <div className='flex-col items-center w-full bg-[#FAFAFA]'>
+    <div className='flex-col items-center justify-start w-full max-w-screen-2xl mx-auto font-outfit bg-[#FAFAFA]'>
         <Navbar />
         <HomeIntro />
         <HowItWorks />

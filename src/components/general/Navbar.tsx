@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from '../../assets/umsLogo.svg'
 import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 
 
@@ -14,27 +15,33 @@ const Navbar: React.FC<ImageComponentProps> = () => {
     const [open, ssetOpen] = useState<boolean>(false);
 
   return (
-    <div className={`flex-col items-center justify-between w-full bg-white pt-5 pb-5 px-6 shadow-md ${open ? 'h-screen fixed z-[200] overflow-hidden' : "h-[95px]"} md:px-8 lg:h-[100px] lg:px-10 xl:px-16`}>
+    <div className={`flex-col items-center justify-between w-full font-outfit bg-white pt-5 pb-5 px-6 shadow-md ${open ? 'h-screen fixed z-[200] overflow-hidden' : "h-[95px]"} md:px-8 lg:h-[100px] lg:px-10 xl:px-16`}>
       <div className='flex items-center justify-between w-full'>
-      <img className='w-[112px] h-322px] lg:w-[160px] lg:h-[40px] xl:w-[168px] xl:h-[48px]'
-      src={logo} alt='logo' />
+        <Link to='/'>
+         <img className='w-[112px] h-322px] lg:w-[160px] lg:h-[40px] xl:w-[168px] xl:h-[48px]'
+         src={logo} alt='logo' />
+        </Link>
 
       <div className='hidden lg:flex items-center justify-between w-[50%] xl:w-[48%]'>
           <p className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
               Discover 
           </p>
-          <p className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
+          <Link to='/about' className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
               About us    
-          </p>
+          </Link>
           <p className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
               Host an event    
           </p>
-          <p className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
-              Pricing  
-          </p>
-          <p className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
-              Blog   
-          </p>
+          <Link to='/pricing'>
+              <p className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
+                  Pricing  
+              </p>
+          </Link>
+          <Link to='/blog'>
+               <p className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
+                   Blog   
+               </p>
+        </Link>
       </div>
 
       <div className='hidden lg:flex items-center justify-between'>
@@ -65,18 +72,24 @@ const Navbar: React.FC<ImageComponentProps> = () => {
               <p className='text-sm font-medium text-[##000000] mt-12'>
                   Discover 
               </p>
-              <p className='text-sm font-medium text-[##000000] mt-12'>
-                  About us    
-              </p>
+              <Link to='/about'>
+                  <p className='text-sm font-medium text-[##000000] mt-12'>
+                      About us    
+                  </p>
+              </Link>
               <p className='text-sm font-medium text-[##000000] mt-12'>
                   Host an event    
               </p>
-              <p className='text-sm font-medium text-[##000000] mt-12'>
-                  Pricing  
-              </p>
-              <p className='text-sm font-medium text-[##000000] mt-12'>
-                  Blog   
-              </p>
+              <Link to='/pricing'>
+                  <p className='text-sm font-medium text-[##000000] mt-12'>
+                      Pricing  
+                  </p>
+              </Link>
+              <Link to='/blog'>
+                  <p className='text-sm font-medium text-[##000000] mt-12'>
+                        Blog  
+                  </p>
+              </Link>
           </div>
 
 
