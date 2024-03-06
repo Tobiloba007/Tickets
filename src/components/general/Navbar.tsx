@@ -23,9 +23,9 @@ const Navbar: React.FC<ImageComponentProps> = () => {
         </Link>
 
       <div className='hidden lg:flex items-center justify-between w-[50%] xl:w-[48%]'>
-          <p className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
+          <Link to='/discover' className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
               Discover 
-          </p>
+          </Link>
           <Link to='/about' className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
               About us    
           </Link>
@@ -69,9 +69,9 @@ const Navbar: React.FC<ImageComponentProps> = () => {
       {open &&
       <div className='flex-col items-center justify-start w-full'>
           <div className='flex-col items-start justify-start w-full mt-10'>
-              <p className='text-sm font-medium text-[##000000] mt-12'>
+              <Link to='/discover' className='text-sm font-medium text-[##000000] mt-12'>
                   Discover 
-              </p>
+              </Link>
               <Link to='/about'>
                   <p className='text-sm font-medium text-[##000000] mt-12'>
                       About us    

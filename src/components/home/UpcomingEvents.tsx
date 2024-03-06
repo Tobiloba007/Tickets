@@ -11,10 +11,10 @@ const UpcomingEvents: React.FC = () => {
            </p>
         </div>
 
-        <div className='flex flex-row items-center justify-start w-full mt-8 md:mt-10 lg:mt-10 xl:mt-10'>
+        <div className='flex flex-row items-center justify-start w-full overflow-x-auto mt-8 md:mt-10 lg:mt-10 xl:mt-10'>
             <div className='relative w-[270px] h-[380px] mr-3 xl:h-[430px] xl:w-[303px]'>
                 <img className='h-full w-full rounded-[14px] object-cover'
-                src={carousel1} alt="category concert image" />
+                src={carousel1} alt="category concert" />
 
                 <div className='absolute top-0 flex flex-col items-center justify-end pb-11 bg-gradient-to-b from-transparent to-[#000000] h-full w-full rounded-[14px] opacity-95'>
                     <p className='text-[12px] font-bold text-[#ffffff] text-center'>
