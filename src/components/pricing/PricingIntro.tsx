@@ -121,7 +121,7 @@ const PricingIntro = () => {
                     detail: 'Free Events',
                 },
                 {
-                    check: false,
+                    check: true,
                     detail: 'Onsite personnel',
                 },
                 {
@@ -165,7 +165,7 @@ const PricingIntro = () => {
                 </p>
             </div>
 
-            <div className='flex flex-row items-center justify-start w-full flex-wrap mt-7 pb-16 md:gap-16 md:justify-center 
+            <div className='flex flex-row items-start justify-start w-full flex-wrap mt-7 pb-16 md:gap-16 md:justify-center 
             lg:justify-between md:mt-16 lg:mt-12 lg:gap-0 xl:mt-14'>
                 {plans.map((item, index) => {
                     return(

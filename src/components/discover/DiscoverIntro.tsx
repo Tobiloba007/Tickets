@@ -3,7 +3,7 @@ import Navbar from '../general/Navbar'
 import { IoCalendarOutline } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { RxDividerVertical } from "react-icons/rx";
-import bg from '../../assets/image10.jpg'
+import bg from '../../assets/image13.jpg'
 
 
 
@@ -21,8 +21,8 @@ const DiscoverIntro = () => {
             </div>
 
             <div className='relative w-full h-[400px] flex flex-col items-center lg:mt-2 lg:h-[500px] xl:h-[650px] xl:mt-5'
-            style={{backgroundImage: `url(${bg})`}}>
-                <div className='flex flex-col items-center justify-center h-full w-full bg-[#A4A4A4] opacity-30 mt-5'></div>
+            style={{backgroundImage: `url(${bg})`, backgroundRepeat:'no-repeat', backgroundSize: 'cover'}}>
+                <div className='flex flex-col items-center justify-center h-full w-full bg-[#000000] opacity-30'></div>
                 <div className='absolute top-[40%] flex flex-col items-center justify-center w-full z-50'>
                     <button className='text-center text-xs h-6 rounded-md text-[#2F2623] bg-[#FFDE9C] px-4 xl:h-8 xl:px-6 xl:rounded-lg xl:text-base'>
                         in 3 days
