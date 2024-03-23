@@ -1,14 +1,21 @@
 import React, { useState } from 'react'
+import Navbar from '../general/Navbar'
 import { FiPlus, FiMinus } from "react-icons/fi";
-import { useNavigate } from 'react-router-dom';
+
 
 
 type Props = {}
 
-const FaqSection = (props: Props) => {
-    const [accordion, setAccordion] = useState<number | null>(null)
+const FaqIntro = (props: Props) => {
+    const [accordion, setAccordion] = useState<number | null>(null);
+    const [selected, setSelected] = useState<string>('General');
 
-    const navigate = useNavigate();
+    const tabs = ['All', 'General', 'Events', 'Tickets']
+
+    const handleTab = (item: string) => {
+        setSelected(item)
+        console.log(selected);
+    }
 
     const faq = [
         {
@@ -38,51 +45,66 @@ const FaqSection = (props: Props) => {
     }
 
   return (
-    <div className='flex items-center justify-center w-full'>
-    <div className='flex flex-col items-start justify-start w-full bg-[#571845] py-14 pb-24 px-6 md:mt-3 md:px-8 lg:flex-row lg:items-start lg:justify-between lg:w-[92%] lg:px-28 lg:pb-28 xl:w-[90%] xl:pt-20 xl:pb-36'>
-        <div className='flex flex-col items-start justify-start w-full lg:mt-12'>
-            <p className='text-[23px] font-semibold text-[#ffffff] leading-8 md:text-[26px] lg:text-[30px] lg:leading-10 xl:text-[35px] xl:leading-[45px]'>
-                Get to know us <br /> better.
-            </p>
-            <button onClick={() => navigate('/faq')}
-            className='text-[15px] font-semibold text-[#571845] text-center h-10 w-[135px] rounded-[9px] bg-[#ffffff] mt-5 lg:mt-6 xl:mt-8 xl:h-11 xl:w-[140px]'>
-                See all FAQs
-            </button>
-        </div>
+    <div className='flex flex-col items-center justify-start w-full xl:mb-10'>
+        <Navbar />
 
-        <div className='flex flex-col items-center justify-start w-full mt-4 lg:mt-0'>
-        {faq.map((item) => {
+        <div className='flex flex-col items-center justify-start w-full bg-white mt-14 md:items-start md:mt-20 lg:mt-24 xl:mt-28'>
+            <p className='text-[25px] text-center font-semibold px-5 text-[#571845] text-3xl md:text-start md:text-2xl md:px-10 
+            lg:px-12 lg:text-[32px] lg:leading-10 xl:text-[40px] xl:leading-[50px] xl:px-24'>
+                  Frequently Asked <br />Question
+            </p>
+
+            <div className='flex items-center justify-start w-full font-medium mt-8 overflow-x-auto [&>div]:flex-shrink-0 hide-scrollbar 
+            md:px-5 xl:px-20 xl:my-14'>
+                   {tabs.map((item, index) => {
+                        return(
+                   <div key={index} onClick={()=>handleTab(item)}
+                   className={`flex items-center justify-center text-sm font-medium text-[#571845] h-8 rounded-2xl w-24 mx-5
+                               ${selected === item && 'text-white bg-[#571845]'} xl:text-lg xl:w-28 xl:h-9 xl:rounded-3xl`}>
+                              {item}
+                   </div>
+                   )
+                  })}
+            </div>
+
+            <p className='text-xl text-[#571845] font-medium text-start w-full px-5 mt-12 md:px-10 md:text-2xl lg:px-12 xl:px-24 xl:text-3xl xl:mt-6'>
+                  {selected} questions
+            </p>
+
+
+            <div className='flex flex-col items-center justify-start w-full px-5 mt-4 lg:mt-0 md:px-10 lg:px-12 xl:px-24'>
+            {faq.map((item) => {
                 return(
             <div key={item.id} className='flex flex-col items-center justify-start w-full mt-14 lg:mt-12'>
                 <div className='flex flex-row items-start justify-between w-full'>
-                     <p className='text-[18px] font-medium text-[#ffffff] leading-8 lg:text-[20px] lg:w-[80%] lg:leading-[40px] xl:text-[23px] xl:w-[70%]'>
+                     <p className='text-[18px] font-medium text-[#331F2D] leading-8 lg:text-[20px] lg:w-[80%] lg:leading-[40px] xl:text-[23px] xl:w-[70%]'>
                          {item.title}
                      </p>
                      <div onClick={()=>handleAccordion(item.id)}>
                          {accordion === item.id
-                          ?<FiMinus className='w-[23px] h-[23px] text-[#ffffff]' />
-                          :<FiPlus className='w-[23px] h-[23px] text-[#ffffff]' />
+                          ?<FiMinus className='w-[23px] h-[23px] text-[#331F2D]' />
+                          :<FiPlus className='w-[23px] h-[23px] text-[#331F2D]' />
                          }
                      </div>
                 </div>
 
                 {accordion === item.id &&
-                <p className='text-[14px] font-normal text-[#ffffff] leading-8 mt-2 xl:text-[17px]'>
+                <p className='text-[14px] font-normal text-[#331F2D] leading-8 mt-2 xl:text-[17px]'>
                         {item.answer}
                 </p>
                 }
 
-                <div className='w-full h-[0.5px] bg-[#ffffff] mt-[50px]'></div>
+                <div className='w-full h-[0.5px] bg-[#331F2D] mt-[50px]'></div>
                 {/* {accordion !== item.id && } */}
             </div>
                 )
             })}
             
-        </div>
+             </div>
 
-    </div>
+        </div>
     </div>
   )
 }
 
-export default FaqSection
+export default FaqIntro

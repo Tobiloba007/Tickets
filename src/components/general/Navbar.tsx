@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from '../../assets/umsLogo.svg'
 import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -13,6 +13,8 @@ interface ImageComponentProps {
 
 const Navbar: React.FC<ImageComponentProps> = () => {
     const [open, ssetOpen] = useState<boolean>(false);
+
+    const navigate = useNavigate();
 
   return (
     <div className={`flex-col items-center justify-between w-full font-outfit bg-white pt-5 pb-5 px-6 shadow-md ${open ? 'h-screen fixed z-[200] overflow-hidden' : "h-[95px]"} md:px-8 lg:h-[100px] lg:px-10 xl:px-16`}>
@@ -29,9 +31,9 @@ const Navbar: React.FC<ImageComponentProps> = () => {
           <Link to='/about' className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
               About us    
           </Link>
-          <p className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
+          <Link to='/login' className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
               Host an event    
-          </p>
+          </Link>
           <Link to='/pricing'>
               <p className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
                   Pricing  
@@ -45,10 +47,11 @@ const Navbar: React.FC<ImageComponentProps> = () => {
       </div>
 
       <div className='hidden lg:flex items-center justify-between'>
-          <p className='text-sm font-medium text-[#000000] px-4 xl:text-[16px]'>
+          <Link to='/login' className='text-sm font-medium text-[#000000] px-4 xl:text-[16px]'>
               Login 
-          </p>
-          <button className='text-sm font-medium text-white text-center bg-[#571845] rounded-[7px] w-[120px] h-[38px] ml-4 xl:text-[16px] xl:h-[40px] xl:w-[135px] xl:ml-5'>
+          </Link>
+          <button onClick={()=>navigate('/signup1')}
+          className='text-sm font-medium text-white text-center bg-[#571845] rounded-[7px] w-[120px] h-[38px] ml-4 xl:text-[16px] xl:h-[40px] xl:w-[135px] xl:ml-5'>
               Sign Up
           </button>
       </div>
@@ -77,9 +80,11 @@ const Navbar: React.FC<ImageComponentProps> = () => {
                       About us    
                   </p>
               </Link>
-              <p className='text-sm font-medium text-[##000000] mt-12'>
-                  Host an event    
-              </p>
+              <Link to='/login'>
+                  <p className='text-sm font-medium text-[##000000] mt-12'>
+                      Host an event    
+                  </p>
+              </Link>
               <Link to='/pricing'>
                   <p className='text-sm font-medium text-[##000000] mt-12'>
                       Pricing  
@@ -94,10 +99,12 @@ const Navbar: React.FC<ImageComponentProps> = () => {
 
 
           <div className='absolute bottom-8 left-0 flex-col items-center w-full px-6'>
-              <button className='text-center text-sm font-medium  h-[43px] w-full rounded-[9px] text-[#000000]'>
+              <button onClick={()=>navigate('/login')}
+               className='text-center text-sm font-medium  h-[43px] w-full rounded-[9px] text-[#000000]'>
                    Login
               </button>
-              <button className='text-center text-sm font-medium  h-[43px] w-full rounded-[9px] text-[#ffffff] bg-[#571845] mt-4'>
+              <button onClick={()=>navigate('/signup1')}
+              className='text-center text-sm font-medium  h-[43px] w-full rounded-[9px] text-[#ffffff] bg-[#571845] mt-4'>
                    Sign Up
               </button>
           </div>

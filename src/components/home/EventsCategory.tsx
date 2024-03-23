@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import carousel1 from '../../assets/carousel1.jpg'
+import { useNavigate } from 'react-router-dom';
 
 const EventsCategory: React.FC = () => {
     const [tab, setTab] = useState<string>('concert');
@@ -26,6 +27,12 @@ const EventsCategory: React.FC = () => {
             image: carousel1,
         }
     ]
+
+    const navigate = useNavigate();
+
+    const goToSignUp = () => {
+        navigate('/login');
+      };
 
   return (
     <div className='flex-col justify-center items-center w-full py-10 bg-[#ffffff] md:py-14 lg:py-12'>
@@ -70,7 +77,8 @@ const EventsCategory: React.FC = () => {
         <div className='flex flex-row items-center justify-start w-full overflow-x-auto [&>div]:flex-shrink-0 hide-scrollbar mt-7 md:mt-12 lg:mt-16 xl:mt-20'>
             {eventCategories.map((item) => {
                 return(
-            <div key={item.id} className='relative w-[300px] h-[380px] mr-3 first:ml-6 last:mr-6 md:first:ml-8 md:last:mr-8 lg:first:ml-10 lg:last:mr-10 
+            <div key={item.id} onClick={goToSignUp}
+            className='relative w-[300px] h-[380px] mr-3 first:ml-6 last:mr-6 md:first:ml-8 md:last:mr-8 lg:first:ml-10 lg:last:mr-10 
             lg:w-[325px] lg:h-[450px] lg:mr-4 xl:first:ml-16 xl:last:mr-16 xl:h-[525px] xl:w-[375px] xl:mr-5'>
                 <img className='h-full w-full rounded-[14px] object-cover'
                 src={item.image} alt="category concert" />
