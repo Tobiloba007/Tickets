@@ -54,7 +54,7 @@ export const SignUp2 = ({name}: Props) => {
           </p>
 
           <div className='flex flex-col items-start justify-start w-full mt-6'>
-               {/* EMAIL */}
+               {/* PASSWORD */}
               <div className='flex flex-col items-start w-full mt-3'>
                      <p className='text-xs font-medium text-[#2A1D34] xl:text-sm'>
                           Password  

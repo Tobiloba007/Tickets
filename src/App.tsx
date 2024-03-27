@@ -10,6 +10,7 @@ import { SignUp1 } from './pages/auth/SignUp1';
 import { SignUp2 } from './pages/auth/SignUp2';
 import { Login } from './pages/auth/Login';
 import { TicketPage } from './pages/TicketPage';
+import TicketSuccess from './components/ticket/TicketSuccess';
 
 
 const App: React.FC = () => {
@@ -26,6 +27,7 @@ const App: React.FC = () => {
         <Route path="/signup2" Component={SignUp2} />
         <Route path="/login" Component={Login} />
         <Route path="/ticketPage" Component={TicketPage} />
+        <Route path="/ticketSuccess" Component={TicketSuccess} />
       </Routes>
     </Router>
   );

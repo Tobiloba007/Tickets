@@ -23,6 +23,7 @@ export const Login = ({name}: Props) => {
   const values = {'email': email, 'password': password}
 
   const handleSubmit = () => {
+    navigate('/ticketPage')
     console.log(values)
   }
 

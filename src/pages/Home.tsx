@@ -14,7 +14,7 @@ type Props = {}
 const Home = (props: Props) => {
   return (
     <div className='flex-col items-center justify-start w-full max-w-screen-2xl mx-auto font-outfit bg-[#FAFAFA]'>
-        <Navbar />
+        <Navbar button1='Login' button2='Sign Up' link1='/login' link2='/signup2' />
         <HomeIntro />
         <HowItWorks />
         <EventsCategory />

@@ -46,7 +46,7 @@ const FaqIntro = (props: Props) => {
 
   return (
     <div className='flex flex-col items-center justify-start w-full xl:mb-10'>
-        <Navbar />
+        <Navbar button1='Login' button2='Sign Up' link1='/login' link2='/signup2' />
 
         <div className='flex flex-col items-center justify-start w-full bg-white mt-14 md:items-start md:mt-20 lg:mt-24 xl:mt-28'>
             <p className='text-[25px] text-center font-semibold px-5 text-[#571845] text-3xl md:text-start md:text-2xl md:px-10 

@@ -8,10 +8,13 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 interface ImageComponentProps {
-//   altText: string;
+    button1: string 
+    button2: string 
+    link1: string 
+    link2: string 
 }
 
-const Navbar: React.FC<ImageComponentProps> = () => {
+const Navbar: React.FC<ImageComponentProps> = (props) => {
     const [open, ssetOpen] = useState<boolean>(false);
 
     const navigate = useNavigate();
@@ -47,12 +50,12 @@ const Navbar: React.FC<ImageComponentProps> = () => {
       </div>
 
       <div className='hidden lg:flex items-center justify-between'>
-          <Link to='/login' className='text-sm font-medium text-[#000000] px-4 xl:text-[16px]'>
-              Login 
+          <Link to={props.link1} className='flex items-center justify-center text-sm font-medium text-[#000000] px-6 rounded-[7px] bg-[#EEE8EC] h-[38px] xl:h-[40px] xl:text-[16px]'>
+              {props.button1}
           </Link>
-          <button onClick={()=>navigate('/signup1')}
+          <button onClick={()=>navigate(props.link2)}
           className='text-sm font-medium text-white text-center bg-[#571845] rounded-[7px] w-[120px] h-[38px] ml-4 xl:text-[16px] xl:h-[40px] xl:w-[135px] xl:ml-5'>
-              Sign Up
+              {props.button2}
           </button>
       </div>
 
@@ -99,13 +102,13 @@ const Navbar: React.FC<ImageComponentProps> = () => {
 
 
           <div className='absolute bottom-8 left-0 flex-col items-center w-full px-6'>
-              <button onClick={()=>navigate('/login')}
-               className='text-center text-sm font-medium  h-[43px] w-full rounded-[9px] text-[#000000]'>
-                   Login
+              <button onClick={()=>navigate(props.link1)}
+               className='text-center text-sm font-medium  h-[43px] w-full rounded-[9px] text-[#000000] bg-[#EEE8EC]'>
+                   {props.button1}
               </button>
-              <button onClick={()=>navigate('/signup1')}
+              <button onClick={()=>navigate(props.link2)}
               className='text-center text-sm font-medium  h-[43px] w-full rounded-[9px] text-[#ffffff] bg-[#571845] mt-4'>
-                   Sign Up
+                   {props.button2}
               </button>
           </div>
 

@@ -10,7 +10,7 @@ import bg from '../../assets/image13.jpg'
 const DiscoverIntro = () => {
   return (
     <div className='flex flex-col items-center justify-start w-full'>
-        <Navbar />
+        <Navbar button1='Login' button2='Sign Up' link1='/login' link2='/signup2' />
 
         <div className='flex flex-col items-center justify-start w-full px-5 md:px-8 lg:px-10 xl:px-16'>
             <div className='w-full mt-7 md:mt-10 xl:mt-16'>

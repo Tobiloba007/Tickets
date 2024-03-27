@@ -9,7 +9,7 @@ import { GoArrowRight } from "react-icons/go";
 const BlogIntro = () => {
   return (
     <div className='flex flex-col items-center justify-start w-full xl:mb-10'>
-        <Navbar />
+        <Navbar button1='Login' button2='Sign Up' link1='/login' link2='/signup2' />
 
         <div className='flex flex-col items-start justify-start w-full px-5 mt-14 md:mt-20 lg:px-10 lg:mt-24 xl:px-16 xl:mt-28'>
             <p className='text-[27px] font-semibold text-[#571845] text-3xl md:pl-5 lg:text-[32px] lg:leading-10 xl:text-[40px] xl:leading-[50px]'>

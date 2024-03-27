@@ -1,12 +1,33 @@
+import { useState } from 'react';
 import calendar from '../../assets/icons/calendar-2.svg'
 import { HiOutlineMinus, HiOutlinePlus } from "react-icons/hi2";
 
 
 interface Props {
-    setCheckout: React.Dispatch<React.SetStateAction<boolean>>;
+    setCheckout: React.Dispatch<React.SetStateAction<boolean>>
+    setValue: React.Dispatch<React.SetStateAction<number>>
+    value: number
+    ticket: string
+    fees: string
+    subTotal: string
+    total: string
   }
 
-const TicketSummary = ({setCheckout}: Props) => {
+const TicketSummary = (props: Props) => {
+
+  const increment = () => {
+    props.setValue(props.value + 1)
+  }
+
+  const decrement = () => {
+    if(props.value > 1){
+      props.setValue(props.value - 1)
+    }else{
+      props.setValue(1)
+    }  
+  }
+
+
   return (
     <div className='flex flex-col items-center justify-start w-full px-5 mt-5 pb-20 md:px-8 md:flex-row md:items-start md:justify-between
                      md:mt-10 md:pb-28 lg:px-10 lg:mt-12 lg:pb-36 xl:px-16 xl:pb-44'>
@@ -42,21 +63,23 @@ const TicketSummary = ({setCheckout}: Props) => {
                                VVIP Ticket  
                           </p>
                           <p className="text-sm font-semibold text-[#571845] pt-1 lg:text-base xl:text-xl xl:pt-2">
-                                N104,100 
+                                ₦{props.total} 
                                 <span className='text-[#4F3D49] text-[10px] font-medium pl-2 lg:text-xs xl:text-sm'>
-                                      including N4100 fee
+                                      including ₦{props.fees} fee
                                 </span>
                           </p>
                     </div>
 
                     <div className='flex items-center justify-start'>
-                       <div className='flex items-center justify-center h-8 px-2 rounded-md bg-[#571845] text-white text-sm lg:h-10 lg:px-3 xl:h-11'>
+                       <div onClick={decrement}
+                       className='flex items-center justify-center h-8 px-2 rounded-md bg-[#571845] text-white text-sm lg:h-10 lg:px-3 xl:h-11'>
                             <HiOutlineMinus className='xl:text-lg' />
                        </div>
                        <p className='text-xs text-[#571845] font-medium px-4 lg:text-sm lg:px-6 xl:text-base xl:px-7'>
-                          1 
+                          {props.value}
                        </p>
-                       <div className='flex items-center justify-center h-8 px-2 rounded-md bg-[#571845] text-white text-sm lg:h-10 lg:px-3 xl:h-11'>
+                       <div onClick={increment}
+                       className='flex items-center justify-center h-8 px-2 rounded-md bg-[#571845] text-white text-sm lg:h-10 lg:px-3 xl:h-11'>
                             <HiOutlinePlus className='xl:text-lg' />
                        </div>
                     </div>
@@ -85,10 +108,10 @@ const TicketSummary = ({setCheckout}: Props) => {
               <div className='flex flex-col items-center justify-center w-full mt-3'>
                 <div className='flex items-center justify-between w-full'>
                      <p className='text-xs text-[#331F2D] font-medium xl:text-base'>
-                         1 x VIP Ticket 
+                         {props.value} x VIP Ticket 
                      </p>
                      <p className='text-xs text-[#331F2D] font-medium xl:text-base'>
-                         N100,000
+                          ₦{props.ticket}
                      </p>
                  </div>
                  <div className='border-[1px] border-[#dddddd] w-full mt-4 opacity-50'></div>
@@ -101,7 +124,7 @@ const TicketSummary = ({setCheckout}: Props) => {
                          Fees 
                      </p>
                      <p className='text-[10px] text-[#331F2D] font-medium xl:text-sm'>
-                          N4,100
+                          ₦{props.fees}
                      </p>
                  </div>
                  <div className='border-[1px] border-[#dddddd] w-full mt-4 opacity-50'></div>
@@ -114,7 +137,7 @@ const TicketSummary = ({setCheckout}: Props) => {
                            Subtotal  
                      </p>
                      <p className='text-[10px] text-[#331F2D] font-medium xl:text-sm'>
-                          N104,100
+                           ₦{props.subTotal}
                      </p>
                  </div>
                  <div className='border-[1px] border-[#dddddd] w-full mt-4 opacity-50'></div>
@@ -127,12 +150,12 @@ const TicketSummary = ({setCheckout}: Props) => {
                          Total 
                      </p>
                      <p className='text-xs text-[#331F2D] font-semibold xl:text-base'>
-                          N104,100
+                          ₦{props.total}
                      </p>
                  </div>
               </div>
 
-              <button onClick={()=>setCheckout(true)}
+              <button onClick={()=>props.setCheckout(true)}
               className='text-sm text-white bg-[#571845] rounded-md h-10 w-full mt-10 xl:h-12 xl:rounded-lg xl:text-xl xl:font-medium'>
                    Continue
               </button>

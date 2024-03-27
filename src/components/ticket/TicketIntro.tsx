@@ -1,7 +1,4 @@
-import React from 'react'
 import Navbar from '../general/Navbar'
-import { IoCalendarOutline } from "react-icons/io5";
-import { CiSearch } from "react-icons/ci";
 import bg from '../../assets/image13.jpg'
 
 
@@ -9,7 +6,7 @@ import bg from '../../assets/image13.jpg'
 const TicketIntro = () => {
   return (
     <div className='flex flex-col items-center justify-start w-full'>
-        <Navbar />
+        <Navbar button1='Go to Dashboard' button2='Log out' link1='/' link2='/' />
 
         <div className='flex flex-col items-center justify-start w-full px-5 mt-5 md:px-8 lg:px-10 xl:px-16'>
             <div className='relative w-full h-[300px] flex flex-col items-center lg:mt-2 md:h-[350px] lg:h-[450px] xl:mt-5 xl:h-[600px]'
