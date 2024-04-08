@@ -88,15 +88,6 @@ const HomeIntro = (props: Props) => {
                     <div className="absolute inset-0 bg-gray-900 opacity-30 rounded-3xl"></div>
                 </SwiperSlide>
               </Swiper>
-
-            {/* <div className='flex flex-row items-center justify-between mb-2 z-50'>
-                <div className='h-2 w-2 rounded-full bg-[#FFC655] mx-[2.5px] xl:mx-1 xl:w-[10px] xl:h-[10px]'></div>
-                <div className='h-2 w-2 rounded-full bg-white mx-[2.5px] xl:mx-1 xl:w-[10px] xl:h-[10px]'></div>
-                <div className='h-2 w-2 rounded-full bg-white mx-[2.5px] xl:mx-1 xl:w-[10px] xl:h-[10px]'></div>
-                <div className='h-2 w-2 rounded-full bg-white mx-[2.5px] xl:mx-1 xl:w-[10px] xl:h-[10px]'></div>
-                <div className='h-2 w-2 rounded-full bg-white mx-[2.5px] xl:mx-1 xl:w-[10px] xl:h-[10px]'></div>
-            </div> */}
-
         </div>
 
     </div>

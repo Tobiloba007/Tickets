@@ -11,6 +11,7 @@ import { SignUp2 } from './pages/auth/SignUp2';
 import { Login } from './pages/auth/Login';
 import { TicketPage } from './pages/TicketPage';
 import TicketSuccess from './components/ticket/TicketSuccess';
+import { UserDashboard } from './pages/user/UserDashboard';
 
 
 const App: React.FC = () => {
@@ -28,6 +29,7 @@ const App: React.FC = () => {
         <Route path="/login" Component={Login} />
         <Route path="/ticketPage" Component={TicketPage} />
         <Route path="/ticketSuccess" Component={TicketSuccess} />
+        <Route path="/userDashboard" Component={UserDashboard} />
       </Routes>
     </Router>
   );
