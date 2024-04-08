@@ -50,10 +50,8 @@ export const UserDashboard: React.FC = () => {
 
 
   return (
-    <div className='relative max-w-screen-2xl mx-auto font-outfit bg-[#FAFAFA]'>
-
-        <div className='fixed flex items-start justify-start w-full'>
-             {/* VERTICAL MENU BARs */}
+    <div className='max-w-screen-2xl mx-auto font-outfit bg-[#FAFAFA] lg:flex items-start justify-between w-full'>
+             {/* VERTICAL MENU BARS */}
              {/* MOBILE SCREENS */}
           { menu &&
           <div className={`absolute flex flex-col items-center justify-start bg-white shadow-slate-900 w-[65%] h-screen z-50 px-5 
@@ -81,7 +79,7 @@ export const UserDashboard: React.FC = () => {
             </div>}
 
              {/* LARGE SCREENS */}
-          <div className={`hidden lg:flex flex-col items-center justify-start bg-white shadow-slate-900 w-[22%] h-screen z-50 px-5 py-11 xl:w-[18%]`}>
+          <div className={`hidden lg:flex fixed flex-col items-center justify-start bg-white shadow-slate-900 w-[22%] h-screen z-50 px-5 py-11 xl:w-[18%]`}>
               <div className='flex items-center justify-start ml-8 w-full'>
                 <img className='w-24 xl:w-32'
                 src={Logo} alt="Logo" />
@@ -108,8 +106,8 @@ export const UserDashboard: React.FC = () => {
 
 
           {/* TOP BAR */}
-          <div className='z-50 flex-1 flex-col items-center justify-start w-full bg-[#FAFAFA] lg:w-[78%] xl:w-[82%]'>
-              <div className='flex items-center justify-between w-full h-[85px] pt-2 px-5 bg-[#FFFFFF] md:px-6 xl:px-8 lg:bg-[#FAFAFA]'>
+          <div className='flex flex-1 flex-col items-center justify-start w-full h-[100vh] bg-[#FAFAFA] lg:w-full lg:items-end'>
+              <div className='fixed z-50 opacity-100 flex items-center justify-between w-full h-[85px] pt-2 px-5 bg-[#FFFFFF] md:px-6 xl:px-8 lg:bg-[#FAFAFA] lg:w-[78%] xl:w-[82%]'>
                   <div className='flex items-center justify-start'>
                     <img className='w-24 lg:hidden'
                     src={Logo} alt="Logo" />
@@ -140,22 +138,17 @@ export const UserDashboard: React.FC = () => {
                   </div>
               </div>
 
+
+              {/* CHILDREN */}
+              <div className='flex items-center justify-start w-full h-full pt-16 lg:w-[78%] xl:w-[82%]'>
+                       {
+                        select === 1 ? <UserHome />
+                       :select === 2 ? <UserBookings />
+                       :select === 3 ? <UserProfile />
+                       :select === 4 && <UserSupport />
+                       }
+              </div>
           </div>
-
-
-        </div>
-
-        {/* CHILDREN */}
-        <div className='flex items-center justify-end w-full'>
-            <div className='flex items-center justify-start w-full overflow-y-scroll pt-16 lg:w-[78%] xl:w-[82%]'>
-                     {
-                      select === 1 ? <UserHome />
-                     :select === 2 ? <UserBookings />
-                     :select === 3 ? <UserProfile />
-                     :select === 4 && <UserSupport />
-                     }
-            </div>
-        </div>
 
     </div>
   )

@@ -51,7 +51,7 @@ export const UserHomeTickets: React.FC = () => {
                {tickets.map((item) => {
                 return(
                <div key={item.id} onMouseOver={()=>handleMouseOver(item.id)} onMouseOut={handleMouseOut}
-               className='relative w-[250px] mr-3 lg:w-[260px] xl:w-[310px]'>
+               className='w-[250px] mr-3 lg:w-[260px] xl:w-[310px]'>
                   <img className='w-full'
                   src={ticket} alt="ticket" />
                   {hover === item.id &&

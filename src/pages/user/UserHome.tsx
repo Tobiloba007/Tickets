@@ -6,7 +6,7 @@ import { UserRecommended } from '../../components/user/userHome/UserRecommended'
 
 export const UserHome: React.FC = () => {
   return (
-    <div className='flex flex-col items-center justify-start w-full'>
+    <div className='flex-col items-center justify-start w-full h-full overflow-y-scroll [&>div]:flex-shrink-0 hide-scrollbar'>
        <div className='flex items-start justify-between w-full mt-14 px-5 lg:hidden xl:px-8'>
           <p className='text-[#571845] font-bold text-lg md:text-xl'>
               Good day, <br className='md:hidden' /> Maimunah 
