@@ -2,7 +2,12 @@ import React, { useState } from 'react'
 import ticket from '../../../assets/Ticket.svg'
 import overlay from '../../../assets/overlay.svg'
 
-export const UserHomeTickets: React.FC = () => {
+
+interface componentProps {
+    setModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const UserHomeTickets: React.FC<componentProps> = (props) => {
     const tickets = [
         {
             id: 1,
@@ -51,17 +56,19 @@ export const UserHomeTickets: React.FC = () => {
                {tickets.map((item) => {
                 return(
                <div key={item.id} onMouseOver={()=>handleMouseOver(item.id)} onMouseOut={handleMouseOut}
-               className='w-[250px] mr-3 lg:w-[260px] xl:w-[310px]'>
+               className='relative w-[250px] mr-3 lg:w-[260px] xl:w-[310px]'>
                   <img className='w-full'
                   src={ticket} alt="ticket" />
                   {hover === item.id &&
-                  <img className={`absolute top-0 w-full mr-3`}
+                  <img onClick={()=>props.setModal(true)}
+                  className={`absolute top-0 w-full mr-3`}
                   src={overlay} alt="overlay" />
                   }
                </div>
                   )
                })}
          </div>
+         
     </div>
   )
 }

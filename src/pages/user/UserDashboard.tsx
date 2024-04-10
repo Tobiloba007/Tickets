@@ -12,6 +12,7 @@ import { UserHome } from './UserHome';
 import { UserBookings } from './UserBookings';
 import { UserProfile } from './UserProfile';
 import { UserSupport } from './UserSupport';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -48,6 +49,7 @@ export const UserDashboard: React.FC = () => {
      setMenu(false)
    }
 
+   const navigate = useNavigate();
 
   return (
     <div className='max-w-screen-2xl mx-auto font-outfit bg-[#FAFAFA] lg:flex items-start justify-between w-full'>
@@ -81,7 +83,7 @@ export const UserDashboard: React.FC = () => {
              {/* LARGE SCREENS */}
           <div className={`hidden lg:flex fixed flex-col items-center justify-start bg-white shadow-slate-900 w-[22%] h-screen z-50 px-5 py-11 xl:w-[18%]`}>
               <div className='flex items-center justify-start ml-8 w-full'>
-                <img className='w-24 xl:w-32'
+                <img onClick={()=>navigate('/')} className='w-24 xl:w-32'
                 src={Logo} alt="Logo" />
               </div>
 
@@ -89,7 +91,7 @@ export const UserDashboard: React.FC = () => {
                 {tabs.map((item) => {
                   return(
                 <div key={item.id} onClick={()=>handleClick(item.id)}
-                className={`flex items-center justify-start px-5 py-[10px] my-2 rounded-lg w-[90%] ${select === item.id && 'bg-[#3D1130]'} hover:bg-[#3D1130] xl:my-3`}>
+                className={`flex items-center justify-start px-5 py-[10px] my-2 rounded-lg cursor-pointer w-[90%] ${select === item.id && 'bg-[#3D1130]'} hover:bg-[#3D1130] xl:my-3`}>
                   <img className='h-4 xl:h-5'
                   src={item.icon} alt="home" />
                   <p className={`text-xs ml-3 ${select === item.id ? 'text-white' : 'text-[#9F959C]'} xl:text-sm xl:ml-4`}>
@@ -106,13 +108,18 @@ export const UserDashboard: React.FC = () => {
 
 
           {/* TOP BAR */}
-          <div className='flex flex-1 flex-col items-center justify-start w-full h-[100vh] bg-[#FAFAFA] lg:w-full lg:items-end'>
+          <div className='flex flex-1 flex-col items-center justify-start w-full h-full bg-[#FAFAFA] lg:w-full lg:items-end'>
               <div className='fixed z-50 opacity-100 flex items-center justify-between w-full h-[85px] pt-2 px-5 bg-[#FFFFFF] md:px-6 xl:px-8 lg:bg-[#FAFAFA] lg:w-[78%] xl:w-[82%]'>
                   <div className='flex items-center justify-start'>
-                    <img className='w-24 lg:hidden'
+                    <img onClick={()=>navigate('/')} className='w-24 lg:hidden'
                     src={Logo} alt="Logo" />
                     <p className='hidden lg:flex text-lg font-bold text-[#571845] xl:text-[22px]'>
-                          Good day, Maimunah  
+                        {
+                          select === 1 ? 'Good day, Maimunah'
+                         :select === 2 ? 'My Bookings'
+                         :select === 3 ? 'My Profile'
+                         :select === 4 && 'Support Channel'
+                        } 
                     </p>
                   </div>
     
@@ -148,6 +155,8 @@ export const UserDashboard: React.FC = () => {
                        :select === 4 && <UserSupport />
                        }
               </div>
+
+              {menu && <div onClick={()=>setMenu(false)} className='absolute z-20 opacity-30 h-full w-full bg-black'></div>}
           </div>
 
     </div>
