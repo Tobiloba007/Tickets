@@ -4,10 +4,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {}
 
 const HomeIntro = (props: Props) => {
+    const navigate = useNavigate();
       
   return (
     <div className='flex flex-col items-center justify-start w-full h-screen bg-cover bg-center px-6 rounded-b-3xl md:rounded-b-[0px] lg:rounded-b-[40px]' 
@@ -23,10 +25,12 @@ const HomeIntro = (props: Props) => {
         </div>
 
         <div className='flex flex-col justify-center items-center w-full mt-14 px-6 md:flex-row mb-14 lg:mb-16 xl:mb-24'>
-            <button className='text-center text-[17px] font-semibold text-[#571845] bg-[#EEE8EC] h-[45px] w-full rounded-[9px] md:w-[180px] xl:w-[200px]'>
+            <button onClick={()=>navigate('/login')}
+            className='text-center text-[17px] font-semibold text-[#571845] bg-[#EEE8EC] h-[45px] w-full rounded-[9px] md:w-[180px] xl:w-[200px]'>
                  Host an event 
             </button>
-            <button className='text-center text-[17px] font-semibold text-[#571845] bg-[#FFC655] h-[45px] w-full rounded-[9px] mt-4 md:w-[180px] md:ml-5 md:mt-0 xl:w-[200px]'>
+            <button onClick={()=>navigate('/login')}
+            className='text-center text-[17px] font-semibold text-[#571845] bg-[#FFC655] h-[45px] w-full rounded-[9px] mt-4 md:w-[180px] md:ml-5 md:mt-0 xl:w-[200px]'>
                  Buy tickets 
             </button>
         </div>

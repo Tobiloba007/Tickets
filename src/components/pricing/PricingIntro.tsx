@@ -1,7 +1,7 @@
 import React from 'react'
-import Navbar from '../general/Navbar'
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 import { MdCancel } from "react-icons/md";
+import Navbar from '../general/Navbar';
 
 
 
@@ -155,7 +155,7 @@ const PricingIntro = () => {
 
   return (
     <div className='flex flex-col items-center justify-start w-full xl:mb-10'>
-        <Navbar button1='Login' button2='Sign Up' link1='/login' link2='/signup2' />
+        <Navbar button1='Login' button2='Sign Up' link1='/login' link2='/signup1' />
 
         <div className='flex flex-col items-center justify-start w-full mt-16 px-5 md:px-8 md:mt-20 md:justify-center lg:px-10 lg:mt-24 xl:px-24 xl:mt-36'>
             <div className='w-full'>

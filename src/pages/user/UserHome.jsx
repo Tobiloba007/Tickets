@@ -1,12 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import calendar from '../../assets/icons/calendar-2.svg'
 import { UserHomeTickets } from '../../components/user/userHome/UserHomeTickets'
 import { UserHomeScroll } from '../../components/user/userHome/UserHomeScroll'
 import { UserRecommended } from '../../components/user/userHome/UserRecommended'
 import { UserHomeModal } from '../../components/modal/UserHomeModal'
 
-export const UserHome: React.FC = () => {
-  const [modal, setModal] = useState<boolean>(false)
+export const UserHome = () => {
+  const [modal, setModal] = useState(false)
+  const [user, setUser] = useState([]);
+
+  // const user = useSelector((state) => state.auth.user)
+
+  useEffect(() => {
+    // Retrieve data from local storage on component mount
+    const storedItem = localStorage.getItem('userData');
+    // Parse the JSON data if it exists
+    if (storedItem) {
+      setUser(JSON.parse(storedItem));
+      console.log(user)
+    }
+  }, []);
 
 
   return (
@@ -14,7 +27,7 @@ export const UserHome: React.FC = () => {
     <div className='flex-col items-center justify-start w-full h-full overflow-y-scroll [&>div]:flex-shrink-0 hide-scrollbar'>
        <div className='flex items-start justify-between w-full mt-14 px-5 lg:hidden xl:px-8'>
           <p className='text-[#571845] font-bold text-lg md:text-xl'>
-              Good day, <br className='md:hidden' /> Maimunah 
+              Good day, <br className='md:hidden' /> {user.user_name}
           </p>
 
           <div className='flex items-center justify-center w-[80px] h-8 border-[1.7px] border-[#C6C0C4] rounded-lg md:w-24'>

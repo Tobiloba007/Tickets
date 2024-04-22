@@ -3,12 +3,16 @@ import facebook from '../../assets/icons/facebook.svg'
 import x from '../../assets/icons/x.svg'
 import sms from '../../assets/icons/sms.svg'
 import location from '../../assets/icons/location.svg'
-import logo from '../../assets/footerLogo.svg'
+import logo from '../../assets/umsLogo.svg'
+import { useNavigate } from 'react-router-dom'
+
 
 
 type Props = {}
 
 const Footer = (props: Props) => {
+    const navigate = useNavigate();
+
   return (
     <div className='flex flex-col items-start justify-start w-full px-6 bg-[#ffffff] pt-5 pb-5 md:px-8 lg:px-10 xl:px-24'>
         <img className='w-32 h-20 mb-10 xl:h-24 xl:w-40'
@@ -19,13 +23,16 @@ const Footer = (props: Props) => {
                  <p className='text-[#1A0313] text-[19px] font-medium mb-3 md:text-base xl:text-lg'>
                      Company
                  </p>
-                 <p className='text-[#5C4C57] text-[17px] font-medium my-4 md:text-sm xl:text-base'>
+                 <p onClick={()=>navigate('/about')}
+                 className='text-[#5C4C57] text-[17px] font-medium my-4 md:text-sm xl:text-base'>
                      About
                  </p>
-                 <p className='text-[#5C4C57] text-[17px] font-medium my-4 md:text-sm xl:text-base'>
+                 <p onClick={()=>navigate('/blog')}
+                 className='text-[#5C4C57] text-[17px] font-medium my-4 md:text-sm xl:text-base'>
                      Blog 
                  </p>
-                 <p className='text-[#5C4C57] text-[17px] font-medium mt-4 md:text-sm xl:text-base'>
+                 <p onClick={()=>navigate('/faq')}
+                 className='text-[#5C4C57] text-[17px] font-medium mt-4 md:text-sm xl:text-base'>
                      Help  
                  </p>
              </div>
@@ -69,7 +76,8 @@ const Footer = (props: Props) => {
                  <p className='text-[#1A0313] text-[19px] font-medium mb-3 md:text-base xl:text-lg'>
                       Resources
                  </p>
-                 <p className='text-[#5C4C57] text-[17px] font-medium my-4 md:text-sm xl:text-base'>
+                 <p onClick={()=>navigate('/pricing')}
+                 className='text-[#5C4C57] text-[17px] font-medium my-4 md:text-sm xl:text-base'>
                       Pricing 
                  </p>
                  <p className='text-[#5C4C57] text-[17px] font-medium my-4 md:text-sm xl:text-base'>
@@ -129,7 +137,7 @@ const Footer = (props: Props) => {
 
             <div className="flex flex-row items-center justify-start w-full">
                 <p className="text-[#331F2D] text-[17px] font-medium my-4 w-[80%] md:text-sm xl:text-base">
-                     ©2023. Umscope Limited . All rights reserved
+                     ©2023. Padi Technologies . All rights reserved
                 </p>
             </div>
 

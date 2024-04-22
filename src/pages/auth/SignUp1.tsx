@@ -2,14 +2,12 @@ import { useNavigate } from 'react-router-dom'
 import logo from '../../assets/umsLogo.svg'
 import { useState } from 'react';
 import { IoMdCheckmark } from "react-icons/io";
+import { useDispatch } from 'react-redux';
+import { setRegData } from '../../features/authentication/AuthSlice';
 
 
 
-interface Props {
-    name?: 'james'
-}
-
-export const SignUp1 = ({name}: Props) => {
+export const SignUp1: React.FC  = () => {
   const [isChecked, setIsChecked] = useState<boolean | string | null>('user');
   const [email, setEmail] = useState<string>('');
   const [emailError, setEmailError] = useState<boolean>(false);
@@ -29,15 +27,18 @@ export const SignUp1 = ({name}: Props) => {
 
   const navigate = useNavigate();
 
+
   const isButtonDisabled = email === '' || userName === '' || firstName === '' || lastName === '' 
                           || emailError === true || userNameError === true || firstNameError === true || lastNameError === true
 
   const values = {'user_type': isChecked, 'email': email, 'user_name': userName, 'first_name': firstName, 'last_name': lastName}
 
+  const dispatch = useDispatch();
+
   const handleSubmit = () => {
     navigate('/signup2')
     console.log(values)
-    
+    dispatch(setRegData(values))
   }
 
   return (

@@ -1,5 +1,5 @@
-import Navbar from '../general/Navbar'
 import bg from '../../assets/image13.jpg'
+import Navbar from '../general/Navbar'
 
 
 

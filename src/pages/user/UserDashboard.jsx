@@ -13,13 +13,21 @@ import { UserBookings } from './UserBookings';
 import { UserProfile } from './UserProfile';
 import { UserSupport } from './UserSupport';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { CiLogout } from "react-icons/ci";
+import { setLoggedIn } from '../../features/authentication/AuthSlice';
 
 
 
 
-export const UserDashboard: React.FC = () => {
-  const [select, setSelect] = useState<number>(1);
-  const [menu, setMenu] = useState<boolean>(false);
+
+export const UserDashboard = () => {
+  const [select, setSelect] = useState(1);
+  const [menu, setMenu] = useState(false);
+
+
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+
 
   const tabs = [
     {
@@ -44,19 +52,30 @@ export const UserDashboard: React.FC = () => {
     },
   ]
 
-   const handleClick = (item: number) => {
+   const handleClick = (item) => {
      setSelect(item)
      setMenu(false)
    }
 
+   const dispatch = useDispatch();
+
+   const handleLogout = () => {
+    dispatch(setLoggedIn(false))
+    navigate('/')
+   }
+
    const navigate = useNavigate();
+
+   useEffect(() => {
+    console.log(isLoggedIn);
+   }, [])
 
   return (
     <div className='max-w-screen-2xl mx-auto font-outfit bg-[#FAFAFA] lg:flex items-start justify-between w-full'>
              {/* VERTICAL MENU BARS */}
              {/* MOBILE SCREENS */}
           { menu &&
-          <div className={`absolute flex flex-col items-center justify-start bg-white shadow-slate-900 w-[65%] h-screen z-50 px-5 
+          <div className={`fixed flex flex-col items-center justify-start bg-white shadow-slate-900 w-[65%] h-screen z-50 px-5 
                           py-6 md:w-[30%] lg:hidden`}>
               <div className='flex items-center justify-start ml-8 w-full'>
                 <img className='w-24'
@@ -76,7 +95,13 @@ export const UserDashboard: React.FC = () => {
                 </div>
                 )
               })}
-
+                <div onClick={handleLogout}
+                   className={`flex items-center justify-start px-5 py-[10px] my-2 rounded-lg w-[90%] hover:bg-[#3D1130]`}>
+                   <CiLogout />
+                   <p className={`text-xs ml-4 text-[#9F959C]`}>
+                       Sign Out
+                   </p>
+                </div>
               </div>
             </div>}
 
@@ -156,7 +181,7 @@ export const UserDashboard: React.FC = () => {
                        }
               </div>
 
-              {menu && <div onClick={()=>setMenu(false)} className='absolute z-20 opacity-30 h-full w-full bg-black'></div>}
+              {menu && <div onClick={()=>setMenu(false)} className='fixed z-20 opacity-30 h-full w-full bg-black'></div>}
           </div>
 
     </div>

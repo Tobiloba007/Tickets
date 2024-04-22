@@ -14,14 +14,14 @@ const BlogContents: React.FC = () => {
             id: 2,
             name: 'General',
         },
-        // {
-        //     id: 3,
-        //     name: 'Events',
-        // },
-        // {
-        //     id: 4,
-        //     name: 'Tickets',
-        // },
+        {
+            id: 3,
+            name: 'Events',
+        },
+        {
+            id: 4,
+            name: 'Tickets',
+        },
     ]
 
     const [selected, setSelected] = useState<number>(1)
@@ -66,7 +66,7 @@ const BlogContents: React.FC = () => {
   return (
     <div className='flex flex-col items-center justify-start bg-[#FAFAFA] px-5 mt-14 md:px-8 lg:px-10 xl:px-24'>
         {/* BLOG INTRO TABS */}
-        <div className='flex items-center justify-center w-full overflow-x-auto mb-10'>
+        <div className='flex items-center justify-start w-full overflow-x-auto [&>div]:flex-shrink-0 hide-scrollbar mb-10'>
             {tabs.map((item) => {
                 return(
             <div key={item.id} onClick={()=>handleClick(item.id)}

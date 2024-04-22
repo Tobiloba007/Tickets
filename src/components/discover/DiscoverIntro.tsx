@@ -1,16 +1,19 @@
 import React from 'react'
-import Navbar from '../general/Navbar'
 import { IoCalendarOutline } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { RxDividerVertical } from "react-icons/rx";
 import bg from '../../assets/image13.jpg'
+import Navbar from '../general/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const DiscoverIntro = () => {
+    const navigate = useNavigate();
+
   return (
     <div className='flex flex-col items-center justify-start w-full'>
-        <Navbar button1='Login' button2='Sign Up' link1='/login' link2='/signup2' />
+        <Navbar button1='Login' button2='Sign Up' link1='/login' link2='/signup1' />
 
         <div className='flex flex-col items-center justify-start w-full px-5 md:px-8 lg:px-10 xl:px-16'>
             <div className='w-full mt-7 md:mt-10 xl:mt-16'>
@@ -30,7 +33,8 @@ const DiscoverIntro = () => {
                     <p className='text-2xl font-medium text-white mt-3 w-[70%] text-center lg:text-3xl xl:text-[40px] xl:mt-6'>
                           Flytime Fest, Asake
                     </p>
-                    <button className='text-center text-sm font-semibold h-8 rounded-md text-[#331F2D] bg-[#ffffff] px-6 mt-8 xl:mt-10 xl:h-10 xl:px-10 xl:text-base'>
+                    <button onClick={()=>navigate('/login')}
+                    className='text-center text-sm font-semibold h-8 rounded-md text-[#331F2D] bg-[#ffffff] px-6 mt-8 xl:mt-10 xl:h-10 xl:px-10 xl:text-base'>
                          Buy ticket 
                     </button>
                 </div>

@@ -1,12 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DiscoverIntro from '../components/discover/DiscoverIntro'
 import TrendingEvents from '../components/discover/TrendingEvents'
 import PopularEvents from '../components/discover/PopularEvents'
 import Footer from '../components/general/Footer'
 import GeneralEvent from '../components/discover/GeneralEvent'
+import { useLocation } from 'react-router-dom'
 
 const Discover = () => {
   const [selectAll, setSelectedAll] = useState(false);
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className='font-outfit bg-[#FAFAFA]'>

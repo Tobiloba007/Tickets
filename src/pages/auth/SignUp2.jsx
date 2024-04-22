@@ -1,38 +1,46 @@
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import logo from '../../assets/umsLogo.svg'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoMdCheckmark } from "react-icons/io";
+import { useDispatch, useSelector } from 'react-redux';
+import { createAccount } from '../../features/authentication/AuthActions';
+import { IoIosArrowBack } from "react-icons/io";
 
 
 
-interface Props {
-    name?: 'james'
-}
 
-export const SignUp2 = ({name}: Props) => {
-  const [isChecked, setIsChecked] = useState<boolean>(false);
-  const [checkedErrror, setCheckedError] = useState<boolean>(false);
-  const [password, setPassword] = useState<string>('');
-  const [passwordErrror, setPasswordError] = useState<boolean>(false);
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [confirmError, setConfirmError] = useState<boolean>(false);
-  const [phone, setPhone] = useState<string>('');
-  const [phoneError, setPhoneError] = useState<boolean>(false);
-  const [address, setAddress] = useState<string>('');
-  const [addressError, setAddressError] = useState<boolean>(false);
+export const SignUp2  = () => {
+  const [isChecked, setIsChecked] = useState(false);
+  const [checkedErrror, setCheckedError] = useState(false);
+  const [password, setPassword] = useState('');
+  const [passwordErrror, setPasswordError] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmError, setConfirmError] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [phoneError, setPhoneError] = useState(false);
+  const [address, setAddress] = useState('');
+  const [addressError, setAddressError] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+
+  const values1 = useSelector((state) => state.auth.regData)
+
 
   const isButtonDisabled = isChecked === false || password === '' || confirmPassword === '' || phone === '' || address === ''
                            || passwordErrror === true || confirmError === true || phoneError === true || addressError === true
 
-  const values = {'password': password, 'confirmPassword': confirmPassword, 'phone': phone, 'address': address, 'checked': isChecked}
+  const values2 = {'password': password, 'phone': phone, 'address': address}
+  const values = {...values1, ...values2}
 
   const handleSubmit = () => {
-    // navigate('/login')
-    console.log(values)
-    
+    dispatch(createAccount(values, setError, setLoading, navigate))
+   //  console.log(values);
   }
 
   return (
@@ -45,6 +53,14 @@ export const SignUp2 = ({name}: Props) => {
 
 
       <div className='flex flex-col items-center justify-start w-full mt-10 md:w-[53%] lg:w-[37%] lg:mt-12 xl:mt-14 xl:w-[33%]'>
+        <div onClick={()=>navigate(-1)}
+        className='flex items-center justify-start w-full'>
+            <IoIosArrowBack className='text-sm' />
+            <p className='text-xs font-medium text-[#2A1D34] pl-1 xl:text-sm'>
+                Back  
+            </p>
+        </div>
+
         <div className='flex flex-col items-center justify-start w-full mt-3'>
           <p className='text-lg font-semibold text-[#2A1D34] xl:text-2xl'>
               Sign up 
@@ -133,13 +149,19 @@ export const SignUp2 = ({name}: Props) => {
 
           </div>
 
+          <div className='text-xs w-full text-left text-medium text-red-500 mt-10 xl:text-sm xl:mt-10'>{error}</div>
 
-          <div className='flex item-center justify-start w-full mt-8 xl:mt-10'>
+          <div className='flex item-center justify-start w-full mt-3 xl:mt-4'>
             <button onClick={handleSubmit}
             disabled={isButtonDisabled}
-            className={`text-center text-xs font-medium bg-[#571845] text-white h-10 w-full rounded-md 
+            className={`flex items-center justify-center text-xs font-medium bg-[#571845] text-white h-10 w-full rounded-md 
                        ${isButtonDisabled && 'bg-[#9f969c]'} xl:h-10 xl:text-sm xl:rounded-lg`}>
-                Sign Up
+                       { loading
+                        ?<div className="relative flex items-center justify-center w-7 h-7 border-4 border-gray-500 border-solid rounded-full">
+                           <div className="absolute w-7 h-7 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+                        </div>
+                        : 'Sign Up'
+                       }
             </button>
           </div>
 

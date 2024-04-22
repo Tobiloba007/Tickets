@@ -1,11 +1,11 @@
 import React from 'react'
-import Navbar from '../general/Navbar'
 import image1 from '../../assets/image2.jpg'
+import Navbar from '../general/Navbar'
 
 const AboutIntro = () => {
   return (
     <div className='flex flex-col items-center justify-start w-full'>
-      <Navbar button1='Login' button2='Sign Up' link1='/login' link2='/signup2' />
+      <Navbar button1='Login' button2='Sign Up' link1='/login' link2='/signup1' />
 
         <div className='flex flex-col items-center justify-start w-full px-5 lg:px-10 xl:px-16'>
             <div className='relative flex items-center justify-center w-full h-[30rem] md:h-full'>

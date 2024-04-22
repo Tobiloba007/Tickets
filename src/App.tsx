@@ -7,11 +7,12 @@ import Blog from './pages/Blog';
 import Discover from './pages/Discover';
 import Faq from './pages/Faq';
 import { SignUp1 } from './pages/auth/SignUp1';
-import { SignUp2 } from './pages/auth/SignUp2';
-import { Login } from './pages/auth/Login';
 import { TicketPage } from './pages/TicketPage';
 import TicketSuccess from './components/ticket/TicketSuccess';
+import { SignUp2 } from './pages/auth/SignUp2';
+import { Login } from './pages/auth/Login';
 import { UserDashboard } from './pages/user/UserDashboard';
+import { HostDashboard } from './pages/host/HostDashboard';
 
 
 const App: React.FC = () => {
@@ -30,6 +31,7 @@ const App: React.FC = () => {
         <Route path="/ticketPage" Component={TicketPage} />
         <Route path="/ticketSuccess" Component={TicketSuccess} />
         <Route path="/userDashboard" Component={UserDashboard} />
+        <Route path="/hostDashboard" Component={HostDashboard} />
       </Routes>
     </Router>
   );

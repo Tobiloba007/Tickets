@@ -2,19 +2,20 @@ import { useNavigate } from 'react-router-dom'
 import logo from '../../assets/umsLogo.svg'
 import { useState } from 'react';
 import { IoMdCheckmark } from "react-icons/io";
+import { LoginAccount } from '../../features/authentication/AuthActions';
+import { useDispatch } from 'react-redux';
 
 
 
-interface Props {
-    name?: 'james'
-}
+export const Login = () => {
+  const [isChecked, setIsChecked] = useState(false);
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState(false);
+  const [password, setPassword] = useState('');
+  const [passwordErrror, setPasswordError] = useState(false);
 
-export const Login = ({name}: Props) => {
-  const [isChecked, setIsChecked] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>('');
-  const [emailError, setEmailError] = useState<boolean>(false);
-  const [password, setPassword] = useState<string>('');
-  const [passwordErrror, setPasswordError] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -22,18 +23,19 @@ export const Login = ({name}: Props) => {
 
   const values = {'email': email, 'password': password}
 
+  const dispatch = useDispatch();
+
   const handleSubmit = () => {
-    navigate('/userDashboard')
-    console.log(values)
+    dispatch(LoginAccount(values, setError, setLoading, navigate))
   }
 
 
   return (
-    <div className='flex flex-col items-center justify-start w-full px-5 py-8 max-w-screen-2xl mx-auto font-outfit md:px-10 lg:px-12 xl:px-20'>
+    <div className='flex flex-col items-center justify-start w-full px-5 py-6 max-w-screen-2xl mx-auto font-outfit md:px-10 lg:px-12 xl:px-20'>
       <div onClick={()=>navigate('/')}
-      className='flex items-center justify-start w-full mt-2 xl:mt-6'>
-          <img className='xl:w-32'
-          src={logo} alt="logo" />
+      className='flex items-center justify-between w-full xl:mt-6'>
+          <img className='w-[112px] h-322px] lg:w-[160px] lg:h-[40px] xl:w-[168px] xl:h-[48px]'
+         src={logo} alt='logo' />
       </div>
 
 
@@ -78,7 +80,7 @@ export const Login = ({name}: Props) => {
                      type='text'
                      onBlur={()=>setPasswordError(password.trim().length <= 6)}
                      />
-                     {passwordErrror && !password && <p className='text-red-500 text-[10px] pt-1'>password is Required</p> }
+                     {passwordErrror && !password && <p className='text-red-500 text-[10px] pt-1'>Password is Required</p> }
               </div>
 
               <div className='flex items-center justify-between w-full mt-7 xl:mt-8'>
@@ -100,12 +102,19 @@ export const Login = ({name}: Props) => {
           </div>
 
 
-          <div className='flex item-center justify-start w-full mt-8 xl:mt-10'>
+          <div className='text-xs w-full text-left text-medium text-red-500 mt-10 xl:text-sm xl:mt-10'>{error}</div>
+
+          <div className='flex item-center justify-start w-full mt-3 xl:mt-4'>
             <button onClick={handleSubmit}
             disabled={isButtonDisabled}
-            className={`text-center text-xs font-medium bg-[#571845] text-white h-10 w-full rounded-md 
+            className={`flex items-center justify-center text-xs font-medium bg-[#571845] text-white h-10 w-full rounded-md 
                        ${isButtonDisabled && 'bg-[#9f969c]'} xl:h-10 xl:text-sm xl:rounded-lg`}>
-                Sign Up
+                       { loading
+                        ?<div className="relative flex items-center justify-center w-7 h-7 border-4 border-gray-500 border-solid rounded-full">
+                           <div className="absolute w-7 h-7 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+                         </div>
+                        : 'Sign In'
+                       }
             </button>
           </div>
 
