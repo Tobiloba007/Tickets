@@ -1,6 +1,5 @@
 import './index.css';
 import About from './pages/About';
-import Home from './pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Pricing from './pages/Pricing';
 import Blog from './pages/Blog';
@@ -13,6 +12,7 @@ import { SignUp2 } from './pages/auth/SignUp2';
 import { Login } from './pages/auth/Login';
 import { UserDashboard } from './pages/user/UserDashboard';
 import { HostDashboard } from './pages/host/HostDashboard';
+import Home from './pages/Home';
 
 
 const App: React.FC = () => {
