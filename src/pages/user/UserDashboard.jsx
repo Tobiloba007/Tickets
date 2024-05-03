@@ -33,7 +33,7 @@ export const UserDashboard = () => {
     {
       id: 1,
       icon: Home,
-      name: 'Dashboard'
+      name: 'Overview'
     },
     {
       id: 2,

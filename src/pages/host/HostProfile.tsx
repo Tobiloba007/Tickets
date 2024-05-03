@@ -6,7 +6,7 @@ export const HostProfile = () => {
   const [select, setSelect] = useState<string>('Account')
 
   return (
-    <div className='flex flex-col items-start justify-start w-full mt-16 px-5'>
+    <div className='flex flex-col items-start justify-start w-full h-full  px-5 mt-12 lg:mt-10 xl:mt-12'>
           <p className='text-lg font-bold text-[#571845] w-full text-start lg:hidden'>My Profile</p>
 
           <div className='flex items-center justify-between w-full h-12 rounded-md bg-white mt-7 px-2 md:w-[50%] md:h-14 lg:mt-0 xl:w-[450px] xl:h-16'>

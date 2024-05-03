@@ -37,6 +37,7 @@ export const createAccount = (values, setError, setLoading, navigate) => async (
 // LOGIN
 export const LoginAccount = (values, setError, setLoading, navigate) => async (dispatch) => {
     setLoading(true)
+    setError('')
     try{
       const response = await axios.post(`${BASE_URL}/user/signin`, values);
       if (response.status === 200) {

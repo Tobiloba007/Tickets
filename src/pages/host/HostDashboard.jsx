@@ -18,6 +18,11 @@ import { CiLogout } from "react-icons/ci";
 import { setLoggedIn } from '../../features/authentication/AuthSlice';
 import { HostProfile } from './HostProfile';
 import { HostSupport } from './HostSupport';
+import HostWallet from './HostWallet';
+import HostPackage from './HostPackage';
+import HostCheckIn from './HostCheckIn';
+import HostEvents from './HostEvents';
+import HostOverview from './HostOverview';
 
 
 
@@ -35,7 +40,7 @@ export const HostDashboard = () => {
     {
       id: 1,
       icon: Home,
-      name: 'Dashboard'
+      name: 'Overview'
     },
     {
       id: 2,
@@ -198,9 +203,14 @@ export const HostDashboard = () => {
 
 
               {/* CHILDREN */}
-              <div className='flex items-center justify-start w-full h-full pt-16 lg:w-[78%] xl:w-[82%]'>
+              <div className='flex items-center justify-start w-full h-full bg-[#FAFAFA] pt-16 lg:w-[78%] xl:w-[82%]'>
                        {
-                         select === 6 ? <HostProfile />
+                         select === 1 ? <HostOverview />
+                        :select === 2 ? <HostEvents />
+                        :select === 4 ? <HostPackage />
+                        :select === 5 ? <HostWallet />
+                        :select === 6 ? <HostProfile />
+                        :select === 7 ? <HostCheckIn />
                         :select === 8 && <HostSupport />
                        }
               </div>
