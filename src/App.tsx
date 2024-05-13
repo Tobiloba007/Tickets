@@ -13,6 +13,8 @@ import { Login } from './pages/auth/Login';
 import { UserDashboard } from './pages/user/UserDashboard';
 import { HostDashboard } from './pages/host/HostDashboard';
 import Home from './pages/Home';
+import { ForgotPassword } from './pages/auth/ForgotPassword';
+import { ResetPassword } from './pages/auth/ResetPassword';
 
 
 const App: React.FC = () => {
@@ -28,6 +30,8 @@ const App: React.FC = () => {
         <Route path="/signup1" Component={SignUp1} />
         <Route path="/signup2" Component={SignUp2} />
         <Route path="/login" Component={Login} />
+        <Route path="/forgotPassword" Component={ForgotPassword} />
+        <Route path="/resetPassword" Component={ResetPassword} />
         <Route path="/ticketPage" Component={TicketPage} />
         <Route path="/ticketSuccess" Component={TicketSuccess} />
         <Route path="/userDashboard" Component={UserDashboard} />

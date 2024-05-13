@@ -23,6 +23,7 @@ import HostPackage from './HostPackage';
 import HostCheckIn from './HostCheckIn';
 import HostEvents from './HostEvents';
 import HostOverview from './HostOverview';
+import HostCreateEvents from './HostCreateEvents';
 
 
 
@@ -207,6 +208,7 @@ export const HostDashboard = () => {
                        {
                          select === 1 ? <HostOverview />
                         :select === 2 ? <HostEvents />
+                        :select === 3 ? <HostCreateEvents />
                         :select === 4 ? <HostPackage />
                         :select === 5 ? <HostWallet />
                         :select === 6 ? <HostProfile />
