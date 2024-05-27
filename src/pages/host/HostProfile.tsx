@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { HostAccount } from '../../components/host/hostProfile/HostAccount'
 import { HostPreferences } from '../../components/host/HostPreference'
+import { HostAccount } from '../../components/host/hostProfile/HostAccount'
 
 export const HostProfile = () => {
   const [select, setSelect] = useState<string>('Account')
@@ -16,7 +16,7 @@ export const HostProfile = () => {
                 </button>
                 <button onClick={()=>setSelect('Prefences')}
                 className={`text-center h-9 w-[44%] rounded-md text-sm font-semibold ${select === 'Prefences' && 'bg-[#571845] text-white'} xl:h-10 xl:w-[40%]`}>
-                      Prefences
+                      Preferences
                 </button>
           </div>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { UserHelpCentre } from '../../components/user/userSupport/UserHelpCentre'
 import { CreateIssueTable } from '../../components/user/userSupport/CreateIssueTable'
 import { CreateIssueInput } from '../../components/user/userSupport/CreateIssueInput'
+import { UserHelpCentre } from '../../components/user/userSupport/UserHelpCentre'
 
 export const UserSupport: React.FC = () => {
   const [createIssue, setCreateIssue] = useState<number>(0)

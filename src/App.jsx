@@ -1,12 +1,9 @@
 import './index.css';
 import About from './pages/About';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Pricing from './pages/Pricing';
 import Blog from './pages/Blog';
-import Discover from './pages/Discover';
 import Faq from './pages/Faq';
 import { SignUp1 } from './pages/auth/SignUp1';
-import { TicketPage } from './pages/TicketPage';
 import TicketSuccess from './components/ticket/TicketSuccess';
 import { SignUp2 } from './pages/auth/SignUp2';
 import { Login } from './pages/auth/Login';
@@ -15,9 +12,12 @@ import { HostDashboard } from './pages/host/HostDashboard';
 import Home from './pages/Home';
 import { ForgotPassword } from './pages/auth/ForgotPassword';
 import { ResetPassword } from './pages/auth/ResetPassword';
+import Discover from './pages/Discover';
+import Pricing from './pages/Pricing';
+import { TicketPage } from './pages/TicketPage';
 
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <Router>
       <Routes>

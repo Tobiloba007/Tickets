@@ -1,19 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import calendar from '../../assets/icons/calendar-2.svg'
 import { HiOutlineMinus, HiOutlinePlus } from "react-icons/hi2";
 
 
-interface Props {
-    setCheckout: React.Dispatch<React.SetStateAction<boolean>>
-    setValue: React.Dispatch<React.SetStateAction<number>>
-    value: number
-    ticket: string
-    fees: string
-    subTotal: string
-    total: string
-  }
 
-const TicketSummary = (props: Props) => {
+const TicketSummary = (props) => {
 
   const increment = () => {
     props.setValue(props.value + 1)
@@ -26,6 +17,10 @@ const TicketSummary = (props: Props) => {
       props.setValue(1)
     }  
   }
+
+//   useEffect(()=>{
+//      console.log(props.data, 'DATAsss')
+//   },[])
 
 
   return (
@@ -40,16 +35,16 @@ const TicketSummary = (props: Props) => {
 
                {/* LEFT CARD */}
                <div className='flex flex-col items-start justify-start w-full border-[1px] border-[#dddddd] rounded-lg bg-white 
-                               py-10 mt-5 shadow-slate-500 md:h-80 lg:py-7 xl:h-96 xl:px-6'>
+                               py-10 mt-5 shadow-slate-500 md:h-80 lg:py-7 xl:px-6'>
                   <div className='flex flex-col items-start w-full px-4'>
                       <p className='text-lg text-[#331F2D] font-semibold lg:text-xl xl:text-2xl'>
-                          Flytime Fest, Asake 
+                          {props.data.event_name}
                       </p>
                       <div className='flex items-center justify-start w-full mt-3'>
                           <img className="w-6 h-6 xl:w-7 xl:h-7"
                           src={calendar} alt="icons" />
                           <p className="text-sm font-medium text-[#331F2D] pl-4 w-[75%] lg:w-[70%] xl:text-base xl:w-[55%]">
-                               Saturday, December 23 2023 
+                            {props.data.time_and_date.slice(0, 10)}
                           </p>
                       </div>
                   </div>
@@ -60,7 +55,7 @@ const TicketSummary = (props: Props) => {
                   <div className='flex items-start justify-between w-full px-4 mt-4 md:mt-6'>
                     <div className='flex flex-col items-start'>
                           <p className="text-base font-medium text-[#571845] lg:text-lg xl:text-2xl">
-                               VVIP Ticket  
+                               {props.data.tickets[0].name}  
                           </p>
                           <p className="text-sm font-semibold text-[#571845] pt-1 lg:text-base xl:text-xl xl:pt-2">
                                 ₦{props.total} 
@@ -86,7 +81,7 @@ const TicketSummary = (props: Props) => {
 
                   </div>
                   <p className='text-[10px] text-[#4F3D49] px-4 pt-1 font-medium lg:text-xs lg:w-[70%] xl:text-sm xl:pt-2'>
-                         We Own December! 13 years and older. Limited seating available. Access to FLY VILLAGE, a collection of impressive food, drink, and retail vendors. | Access to FLY SPACE, a walk-through access area with a variety of culture-curated experiences. | Free hospitality drinks from your favorite sponsors | A fast tracked-accreditation and admittance entry | Conducive parking close to the festival grounds
+                     {props.data.event_description}
                   </p>
                </div>
           </div>

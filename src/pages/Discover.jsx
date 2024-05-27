@@ -7,7 +7,7 @@ import GeneralEvent from '../components/discover/GeneralEvent'
 import { useLocation } from 'react-router-dom'
 
 const Discover = () => {
-  const [selectAll, setSelectedAll] = useState(false);
+  const [selectAll, setSelectedAll] = useState(true);
 
   const { pathname } = useLocation();
 
@@ -21,10 +21,10 @@ const Discover = () => {
         {
           selectAll
           ? <GeneralEvent />
-          :<>
+          :<div className='w-full'>
             <TrendingEvents />
             <PopularEvents />
-          </>
+           </div>
         }
 
         <div className='flex items-center justify-center w-full mt-20 mb-20 md:mt-24'>

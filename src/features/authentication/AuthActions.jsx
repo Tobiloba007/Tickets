@@ -45,6 +45,7 @@ export const LoginAccount = (values, setError, setLoading, navigate) => async (d
         const userDetails = response.data.data.UserDetails
         localStorage.setItem('token', JSON.stringify(Token));
         localStorage.setItem('userData', JSON.stringify(userDetails));
+        dispatch(setUser(userDetails))
         dispatch(setLoggedIn(true))
 
 

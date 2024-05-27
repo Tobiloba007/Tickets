@@ -3,8 +3,8 @@ import BlogIntro from '../components/blog/BlogIntro'
 import BlogContents from '../components/blog/BlogContents'
 import Footer from '../components/general/Footer'
 import Newsletter from '../components/general/Newsletter'
-import HostEvent from '../components/home/HostEvent'
 import { useLocation } from 'react-router-dom'
+import HostEvent from '../components/home/HostEvent'
 
 const Blog = () => {
   const { pathname } = useLocation();

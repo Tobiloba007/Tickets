@@ -3,13 +3,12 @@ import { CiSearch } from "react-icons/ci";
 import issues from '../../../assets/icons/issues.svg'
 import resources from '../../../assets/icons/resources.svg'
 import faq from '../../../assets/icons/faq.svg'
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
-interface componentProps {
-  setCreateIssue: React.Dispatch<React.SetStateAction<number>>;
-}
 
-export const UserHelpCentre: React.FC<componentProps> = (props) => {
+export const HostHelpCentre = ({setCreateIssue}) => {
   const items = [
     {
       id: 1,
@@ -24,6 +23,7 @@ export const UserHelpCentre: React.FC<componentProps> = (props) => {
       title: 'Resources',
       desc: 'Find and read articles that will guide you or answers your questions',
       button: 'Proceed',
+      link: '/faq',
     },
     {
       id: 3,
@@ -31,14 +31,16 @@ export const UserHelpCentre: React.FC<componentProps> = (props) => {
       title: 'FAQs',
       desc: 'Find some frequently asked questions answers here.',
       button: 'Proceed',
+      link: '/faq',
     }
   ]
 
-  const handleSubmit = (item: number) => {
+  const handleSubmit = (item) => {
     if(item === 1){
-      props.setCreateIssue(1)
+      setCreateIssue(1)
     }
   }
+
 
   return (
     <div className='flex flex-col items-start justify-start w-full h-full'>
@@ -84,10 +86,16 @@ export const UserHelpCentre: React.FC<componentProps> = (props) => {
                      {item.desc}
                  </p>
                  <div className='w-full border-[1px] border-[#E1DEE0] rounded-2xl my-5 opacity-40 xl:my-7'></div>
-                 <button onClick={()=>handleSubmit(item.id)}
+                 {item.id === 1 
+                 ?<button onClick={()=>handleSubmit(item.id)}
                   className='h-8 px-5 bg-[#571845] rounded-md text-center text-white text-xs xl:h-9 xl:text-sm'>
                       {item.button}
                  </button>
+                 :<Link to={item.link} onClick={()=>handleSubmit(item.id)}
+                  className='flex items-center justify-center h-8 px-5 bg-[#571845] rounded-md text-center text-white text-xs xl:h-9 xl:text-sm'>
+                      {item.button}
+                 </Link>
+                 }
               </div>
               )
             })}
@@ -96,4 +104,3 @@ export const UserHelpCentre: React.FC<componentProps> = (props) => {
     </div>
   )
 }
-

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { SlNotebook } from "react-icons/sl";
 import { AiOutlineDollar } from "react-icons/ai";
 import { IoAdd } from "react-icons/io5";
+import { TbCurrencyNaira } from "react-icons/tb";
 
 
 
@@ -115,7 +116,7 @@ const Tickets = ({setActiveForm}) => {
                    <input className='h-9 w-full border-[1px] border-[#dddddd] rounded-md bg-white  pl-10 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
                    placeholder='1000'
                    />
-                   <AiOutlineDollar className='absolute top-[10px] left-4' />
+                   <TbCurrencyNaira className='absolute top-[10px] left-4 xl:top-[14px]' />
                 </div>
           </div>
 

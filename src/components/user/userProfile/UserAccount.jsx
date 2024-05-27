@@ -1,21 +1,22 @@
-import React, { ChangeEvent, useRef, useState } from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import avatar from '../../../assets/avatar.jpg'
 import camera from '../../../assets/icons/camera.svg'
+import { useSelector } from 'react-redux';
 
 
-export const UserAccount: React.FC = () => {
-    const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
-    const fileInputRef = useRef<HTMLInputElement>(null);
+export const UserAccount = () => {
+    const [profilePhoto, setProfilePhoto] = useState(null);
+    const fileInputRef = useRef(null);
 
 
-    const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleFileUpload = (event) => {
         const file = event.target.files?.[0]; // Get the first file selected by the user
         if (file) {
           // Create a FileReader object to read the file
           const reader = new FileReader();
           reader.onloadend = () => {
             // Set the profile photo state to the uploaded image data URL
-            setProfilePhoto(reader.result as string);
+            setProfilePhoto(reader.result);
           };
           reader.readAsDataURL(file); // Read the file as a data URL
         }
@@ -27,6 +28,10 @@ export const UserAccount: React.FC = () => {
           fileInputRef.current.click(); // Programmatically trigger click event of file input
         }
       };
+
+
+      const user = useSelector((state) => state.auth.user)
+
 
   return (
     <div className='flex flex-col items-center justify-start w-full bg-white rounded-md mt-5 px-3 py-4 mb-6 md:px-5 md:items-start'>
@@ -71,8 +76,8 @@ export const UserAccount: React.FC = () => {
                  <p className='text-xs text-[#16071F] mb-1 font-medium xl:text-sm'>
                      First name
                  </p>
-                 <input className='h-10 w-full rounded-md border-[1px] border-[#dddddd] pl-4 text-xs'
-                 placeholder='John'
+                 <input className='h-10 w-full rounded-md border-[1px] border-[#dddddd] pl-4 text-xs outline-[#571845] placeholder:text-[#571845]'
+                 placeholder={user.first_name}
                  type="text" />
               </div>
 
@@ -80,8 +85,8 @@ export const UserAccount: React.FC = () => {
                  <p className='text-xs text-[#16071F] mb-1 font-medium xl:text-sm'>
                      Last name 
                  </p>
-                 <input className='h-10 w-full rounded-md border-[1px] border-[#dddddd] pl-4 text-xs'
-                 placeholder='Doe'
+                 <input className='h-10 w-full rounded-md border-[1px] border-[#dddddd] pl-4 text-xs outline-[#571845] placeholder:text-[#571845]'
+                 placeholder={user.last_name}
                  type="text" />
               </div>
 
@@ -89,8 +94,8 @@ export const UserAccount: React.FC = () => {
                  <p className='text-xs text-[#16071F] mb-1 font-medium xl:text-sm'>
                      Username 
                  </p>
-                 <input className='h-10 w-full rounded-md border-[1px] border-[#dddddd] pl-4 text-xs'
-                 placeholder='JohnDoewyy'
+                 <input className='h-10 w-full rounded-md border-[1px] border-[#dddddd] pl-4 text-xs outline-[#571845] placeholder:text-[#571845]'
+                 placeholder={user.user_name}
                  type="text" />
               </div>
 
@@ -98,8 +103,8 @@ export const UserAccount: React.FC = () => {
                  <p className='text-xs text-[#16071F] mb-1 font- xl:text-sm'>
                      Email  
                  </p>
-                 <input className='h-10 w-full rounded-md border-[1px] border-[#dddddd] pl-4 text-xs'
-                 placeholder='JohnDoewyy'
+                 <input className='h-10 w-full rounded-md border-[1px] border-[#dddddd] pl-4 text-xs outline-[#571845] placeholder:text-[#571845]'
+                 placeholder={user.email}
                  type="text" />
               </div>
 
@@ -107,8 +112,8 @@ export const UserAccount: React.FC = () => {
                  <p className='text-xs text-[#16071F] mb-1 font-medium xl:text-sm'>
                      Address   
                  </p>
-                 <input className='h-10 w-full rounded-md border-[1px] border-[#dddddd] pl-4 text-xs'
-                 placeholder='Enter your Address'
+                 <input className='h-10 w-full rounded-md border-[1px] border-[#dddddd] pl-4 text-xs outline-[#571845] placeholder:text-[#571845]'
+                 placeholder={user.address}
                  type="text" />
               </div>
 
@@ -116,8 +121,8 @@ export const UserAccount: React.FC = () => {
                  <p className='text-xs text-[#16071F] mb-1 font-medium xl:text-sm'>
                      Phone    
                  </p>
-                 <input className='h-10 w-full rounded-md border-[1px] border-[#dddddd] pl-4 text-xs'
-                 placeholder='phone number'
+                 <input className='h-10 w-full rounded-md border-[1px] border-[#dddddd] pl-4 text-xs outline-[#571845] placeholder:text-[#571845]'
+                 placeholder={user.phone}
                  type="number" />
               </div>
          </div>

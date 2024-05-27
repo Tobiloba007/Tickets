@@ -3,8 +3,8 @@ import { UserBookingsTicket } from '../../components/user/userBookings/UserBooki
 import { UserBookingHistory } from '../../components/user/userBookings/UserBookingHistory'
 import { UserHomeModal } from '../../components/modal/UserHomeModal'
 
-export const UserBookings: React.FC = () => {
-  const [modal, setModal] = useState<boolean>(false)
+export const UserBookings = () => {
+  const [modal, setModal] = useState(false)
 
 
   return (

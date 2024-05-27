@@ -1,30 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import calendar from '../../assets/icons/calendar-2.svg'
 import Info from '../../assets/icons/information.svg'
 import { useNavigate } from 'react-router-dom';
 
 
-interface Props {
-    setCheckout: React.Dispatch<React.SetStateAction<boolean>>;
-    setValue: React.Dispatch<React.SetStateAction<number>>;
-    value: number
-    ticket: string
-    fees: string
-    subTotal: string
-    total: string
-  }
 
-const TicketCheckout = (props: Props) => {
-    const [first_name, setFirst_name] = useState<string>('');
-    const [fNameError, setFNameError] = useState<boolean>(false);
-    const [last_name, setLast_name] = useState<string>('');
-    const [lNameError, setLNameError] = useState<boolean>(false);
-    const [email, setEmail] = useState<string>('');
-    const [emailError, setEmailError] = useState<boolean>(false);
-    const [confirmEmail, setConfirmEmail] = useState<string>('');
-    const [confirmEmailError, setConfirmEmailError] = useState<boolean>(false);
-    const [phone, setPhone] = useState<string>('');
-    const [phoneError, setPhoneError] = useState<boolean>(false);
+const TicketCheckout = (props) => {
+    const [first_name, setFirst_name] = useState('');
+    const [fNameError, setFNameError] = useState(false);
+    const [last_name, setLast_name] = useState('');
+    const [lNameError, setLNameError] = useState(false);
+    const [email, setEmail] = useState('');
+    const [emailError, setEmailError] = useState(false);
+    const [confirmEmail, setConfirmEmail] = useState('');
+    const [confirmEmailError, setConfirmEmailError] = useState(false);
+    const [phone, setPhone] = useState('');
+    const [phoneError, setPhoneError] = useState(false);
 
 
 
@@ -57,13 +48,13 @@ const TicketCheckout = (props: Props) => {
                                py-10 mt-5 shadow-slate-500 lg:py-7 lg:pb-12 xl:pb-16 xl:px-6'>
                   <div className='flex flex-col items-start w-full px-4'>
                       <p className='text-lg text-[#331F2D] font-semibold lg:text-xl xl:text-2xl'>
-                          Flytime Fest, Asake 
+                           {}
                       </p>
                       <div className='flex items-center justify-start w-full mt-3'>
                           <img className="w-6 h-6 xl:w-7 xl:h-7"
                           src={calendar} alt="icons" />
                           <p className="text-sm font-medium text-[#331F2D] pl-4 w-[75%] lg:w-[70%] xl:text-base xl:w-[55%]">
-                               Saturday, December 23 2023 
+                               {props.data.time_and_date.slice(0, 10)}
                           </p>
                       </div>
                   </div>

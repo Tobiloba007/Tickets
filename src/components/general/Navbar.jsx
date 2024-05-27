@@ -17,24 +17,16 @@ const Navbar = (props) => {
 
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 
+    const user = useSelector((state) => state.auth.user)
+    
     const handleLogout = () => {
         dispatch(setLoggedIn(false))
         setOpen(false)
         navigate('/')
     }
 
-    const [user, setUser] = useState(null);
 
-  // const user = useSelector((state) => state.auth.user)
 
-  useEffect(() => {
-    // Retrieve data from local storage on component mount
-    const storedItem = localStorage.getItem('userData');
-    // Parse the JSON data if it exists
-    if (storedItem) {
-      setUser(JSON.parse(storedItem));
-    }
-  }, []);
 
   return (
     <div className={`flex-col items-center justify-between w-full font-outfit bg-white pt-5 pb-5 px-6 shadow-md ${open ? 'h-screen fixed z-[200] overflow-hidden' : "h-[95px]"} md:px-8 lg:h-[100px] lg:px-10 xl:px-16`}>
@@ -51,7 +43,10 @@ const Navbar = (props) => {
           <Link to='/about' className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
               About us    
           </Link>
-          <Link to='/login' className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
+          <Link to={isLoggedIn === true && user.user_type === 'user' ?  '/login'
+                      :isLoggedIn === true && user.user_type === 'host' ?  '/hostDashboard' 
+                      : '/login'} 
+                className='text-sm font-medium text-[##000000] px-4 xl:text-[16px]'>
               Host an event    
           </Link>
           <Link to='/pricing'>
@@ -103,7 +98,9 @@ const Navbar = (props) => {
                       About us    
                   </p>
               </Link>
-              <Link to='/login'>
+              <Link to={isLoggedIn === true && user.user_type === 'user' ?  '/login'
+                                         :isLoggedIn === true && user.user_type === 'host' ?  '/hostDashboard' 
+                                         : '/login'}>
                   <p className='text-sm font-medium text-[##000000] mt-12'>
                       Host an event    
                   </p>
@@ -121,7 +118,7 @@ const Navbar = (props) => {
           </div>
 
 
-          <div className='absolute bottom-8 left-0 flex-col items-center w-full px-6'>
+          <div className='flex-col items-center w-full mt-14'>
               <button onClick={()=>navigate(isLoggedIn === true && user.user_type === 'user' ?  '/userDashboard'
                                             :isLoggedIn === true && user.user_type === 'host' ?  '/' 
                                             : props.link1)}

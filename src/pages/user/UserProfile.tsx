@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { UserAccount } from '../../components/user/userProfile/UserAccount'
 import { UserPreferences } from '../../components/user/userProfile/UserPreferences'
+import { UserAccount } from '../../components/user/userProfile/UserAccount'
 
 export const UserProfile: React.FC = () => {
   const [select, setSelect] = useState<string>('Account')

@@ -1,19 +1,16 @@
-import React, { useState } from 'react'
-import TicketSummary from './TicketSummary';
+import React, { useEffect, useState } from 'react'
 import TicketCheckout from './TicketCheckout';
+import TicketSummary from './TicketSummary';
 
 
-interface Props {
-  setChooseTicket: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
-const TicketDetails2 = ({setChooseTicket}: Props) => {
-  const [checkOut, setCheckout] = useState<boolean>(false);
+const TicketDetails2 = ({data, setChooseTicket}) => {
+  const [checkOut, setCheckout] = useState(false);
 
-  const [value, setValue] = useState<number>(1);
+  const [value, setValue] = useState(1);
 
 
-  const ticket = value * 100000
+  const ticket = value * data.tickets[0].amount
   const ticketString = ticket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
   const fees = ticket * 0.05
@@ -27,11 +24,13 @@ const TicketDetails2 = ({setChooseTicket}: Props) => {
   const total = subTotal
   const totalString = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
+
   return (
         <div className='flex items-center justify-center w-full'>
              {
               checkOut
-             ?<TicketCheckout 
+             ?<TicketCheckout
+             data={data}
              setCheckout={setCheckout}
              value={value}
              setValue={setValue}
@@ -40,7 +39,8 @@ const TicketDetails2 = ({setChooseTicket}: Props) => {
              subTotal={subTotalSting}
              total={totalString}
               />
-             :<TicketSummary 
+             :<TicketSummary
+             data={data}
              setCheckout={setCheckout} 
              value={value}
              setValue={setValue}

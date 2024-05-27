@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Event from '../../assets/event.jpg'
 import location from '../../assets/icons/location.svg'
 import calendar from '../../assets/icons/calendar-2.svg'
@@ -8,20 +8,26 @@ import facebook from '../../assets/icons/facebook.svg'
 import instagram from '../../assets/icons/instagram.svg'
 
 
-export const UserHomeModal:React.FC = () => {
+export const UserHomeModal = ({data}) => {
+
+    useEffect(()=>{
+        console.log(data, 'bdfubufebufb');
+    },[])
+
   return (
-    <div className='absolute top-24 flex flex-col items-start justify-start z-50 bg-white rounded-lg w-[90%] px-4 py-4 mb-36 md:w-[80%] 
-                    md:p-5 md:rounded-xl lg:w-[55%] xl:w-[45%] xl:p-6 xl:rounded-2xl xl:top-14'>
+    <div className='flex flex-col items-center justify-center z-50 bg-white rounded-lg overflow-y-auto [&>div]:flex-shrink-0 hide-scrollbar w-[100%] h-full px-4 py-4 pb-5
+                    md:p-5 md:rounded-xl xl:p-6 xl:rounded-2xl xl:top-14'>
+        <div className='w-full overflow-y-scroll'>
         <div className='relative flex flex-col items-center justify-center w-full h-40 md:h-[225px]'>
            <img className='w-full h-full rounded-md md:rounded-lg xl:rounded-xl'
            src={Event} alt="event_image" />
            <div className='absolute flex flex-col items-center justify-center w-full z-50 mt-2'>
                 <button className='text-center text-[11px] text-[#2F2623] font-semibold bg-[#FFDE9C] rounded-md px-3 h-6 md:h-8 
                                    md:px-5 md:text-xs lg:h-7 xl:h-8 xl:text-sm'>
-                      In 3 days 
+                      {data.time_and_date.slice(0, 10)} 
                 </button>
                 <p className='text-white text-center text-xl mt-3 font-semibold w-[50%] md:text-2xl lg:text-[24px] lg:w-[40%] lg:mt-1 xl:text-[26px] xl:w-[35%]'>
-                    Flytime Fest, Asake
+                      {data.event_name}
                 </p>
            </div>
            <div className='absolute h-full w-full bg-black rounded-md opacity-30'></div>
@@ -30,7 +36,7 @@ export const UserHomeModal:React.FC = () => {
         <div className='flex flex-col items-start justify-start w-full mt-7 md:flex-row md:justify-between'>
             <div className='flex flex-col items-start justify-start w-full md:flex-1 mr-4'>
                 <p className='text-base font-bold text-[#571845] lg:text-sm xl:text-base'>
-                     Flytime Fest, Asake 
+                      {data.event_name}
                 </p>
 
                 <div className='flex flex-col items-start justify-start w-full mt-3'>
@@ -38,21 +44,21 @@ export const UserHomeModal:React.FC = () => {
                         <img className='w-5'
                          src={location} alt="location" />
                          <p className='text-sm text-[#331F2D] ml-3 lg:text-[13px]'>
-                              Eko Convention Center, Eko Hotel & Suites. 1415 Adetokunbo Ademola Street, Victoria Island, Lagos.
+                            {data.venue}
                          </p>
                     </div>
                     <div className='flex items-center justify-start w-full mb-4 lg:mb-3'>
                         <img className='w-5'
                          src={calendar} alt="location" />
                          <p className='text-sm text-[#331F2D] ml-3 lg:text-[13px]'>
-                              Saturday, December 23 2023 - Sunday, December 24 2023
+                              {data.time_and_date.slice(0, 10)}
                          </p>
                     </div>
                     <div className='flex items-center justify-start w-full mb-4 lg:mb-3'>
                         <img className='w-5'
                          src={clock} alt="location" />
                          <p className='text-sm text-[#331F2D] ml-3 lg:text-[13px]'>
-                              6:00 PM - 1:00 AM WAT
+                                {data.time_and_date.slice(11, 16)}
                          </p>
                     </div>
                 </div>
@@ -62,7 +68,7 @@ export const UserHomeModal:React.FC = () => {
                          Description
                     </p>
                     <p className='text-sm text-[#331F2D] mt-2 lg:text-[13px]'>
-                         Get ready for back-to-back hits as Afrobeats' powerhouse, Asake, returns to the Flytime stage.Guests must be 13 years old and older. Doors close at 10PM
+                        {data.event_description}
                     </p>
                     <button className='text-center text-sm font-semibold rounded-md text-[#571845] bg-[#EEE8EC] h-10 px-10 mt-4 lg:h-9'>
                         Contact us 
@@ -87,23 +93,28 @@ export const UserHomeModal:React.FC = () => {
                         Share event 
                     </p>
                     <div className='flex items-center justify-start w-full mt-[10px]'>
-                        <div className='flex items-center justify-center w-11 h-11 rounded-full bg-[#EEE8EC] mr-4 lg:h-10 lg:w-10'>
+                        <a href={data.contact_details.twitter} target="_blank" rel="noreferrer" 
+                           className='flex items-center justify-center w-11 h-11 rounded-full bg-[#EEE8EC] mr-4 lg:h-10 lg:w-10'>
                             <img className='w-4' src={x} alt="x" />
-                        </div>
+                        </a>
 
-                        <div className='flex items-center justify-center w-11 h-11 rounded-full bg-[#EEE8EC] mr-4 lg:h-10 lg:w-10'>
+                        <a href={data.contact_details.facebook} target="_blank" rel="noreferrer" 
+                           className='flex items-center justify-center w-11 h-11 rounded-full bg-[#EEE8EC] mr-4 lg:h-10 lg:w-10'>
                             <img className='w-5' src={facebook} alt="x" />
-                        </div>
+                        </a>
 
-                        <div className='flex items-center justify-center w-11 h-11 rounded-full bg-[#EEE8EC] mr-4 lg:h-10 lg:w-10'>
+                        <a href={data.contact_details.instagram} target="_blank" rel="noreferrer" 
+                           className='flex items-center justify-center w-11 h-11 rounded-full bg-[#EEE8EC] mr-4 lg:h-10 lg:w-10'>
                             <img className='w-5' src={instagram} alt="x" />
-                        </div>
+                        </a>
+                        
                     </div>
                 </div>
             </div>
 
         </div>
 
+        </div>
     </div>
   )
 }

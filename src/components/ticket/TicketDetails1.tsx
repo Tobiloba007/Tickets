@@ -8,35 +8,35 @@ import instagram from '../../assets/icons/instagram.svg'
 import facebook from '../../assets/icons/facebook.svg'
 
 
-interface Props {
-    setChooseTicket: React.Dispatch<React.SetStateAction<boolean>>;
-  }
 
-
-const TicketDetails1 = ({setChooseTicket}: Props) => {
+const TicketDetails1 = ({data, setChooseTicket}) => {
     const details = [
         {
             id: 1,
             icon: location,
-            desc: 'Eko Convention Center, Eko Hotel & Suites. 1415 Adetokunbo Ademola Street, Victoria Island, Lagos.'
+            desc: data.venue
         },
         {
             id: 2,
             icon: calendar,
-            desc: 'Saturday, December 23 2023 - Sunday, December 24 2023'
+            desc: data.time_and_date.slice(0, 10)
+            // desc: 'Saturday, December 23 2023 - Sunday, December 24 2023'
         },
         {
             id: 3,
             icon: clock,
-            desc: '6:00 PM - 1:00 AM WAT'
+            desc: data.time_and_date.slice(11, 16)
+            // desc: '6:00 PM - 1:00 AM WAT'
         },
     ]
+
+    
   return (
     <div className='flex flex-col items-center justify-start w-full px-5 mt-5 pb-20 md:px-8 md:flex-row md:items-start md:justify-between
                     md:mt-10 md:pb-28 lg:px-10 lg:mt-12 lg:pb-36 xl:px-16 xl:pb-44'>
         <div className='flex flex-col items-start justify-start w-full md:flex-1'>
             <p className='text-xl text-[#571845] font-semibold lg:text-2xl xl:text-3xl'>
-                Flytime Fest, Asake 
+                {data.event_name} 
             </p>
 
             <div className='flex flex-col items-start justify-start w-full'>
@@ -58,7 +58,7 @@ const TicketDetails1 = ({setChooseTicket}: Props) => {
                         Description
                  </p>
                  <p className="text-sm font-medium text-[#331F2D] mt-4 md:w-[85%] xl:text-base xl:w-[80%]">
-                       Get ready for back-to-back hits as Afrobeats' powerhouse, Asake, returns to the Flytime stage.Guests must be 13 years old and older. Doors close at 10PM
+                       {data.event_description}
                  </p>
             </div>
 
@@ -68,15 +68,15 @@ const TicketDetails1 = ({setChooseTicket}: Props) => {
                         Share event 
                  </p>
                  <div className="flex items-center justify-start mt-4 lg:mt-6 xl:mt-8">
-                    <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-[#EEE8EC] xl:h-12 xl:w-12">
+                    <a href={data.contact_details.twitter} target="_blank" rel="noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full bg-[#EEE8EC] xl:h-12 xl:w-12">
                         <img className="h-4 w-4 xl:h-5 xl:w-5"
                         src={x} alt="x" />
                     </a>
-                    <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-[#EEE8EC] ml-4 xl:h-12 xl:w-12">
+                    <a href={data.contact_details.facebook} target="_blank" rel="noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full bg-[#EEE8EC] ml-4 xl:h-12 xl:w-12">
                         <img className="h-5 w-5 xl:h-6 xl:w-6"
                         src={facebook} alt="x" />
                     </a>
-                    <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-[#EEE8EC] ml-4 xl:h-12 xl:w-12">
+                    <a href={data.contact_details.instagram} target="_blank" rel="noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full bg-[#EEE8EC] ml-4 xl:h-12 xl:w-12">
                         <img className="h-5 w-5 xl:h-6 xl:w-6"
                         src={instagram} alt="x" />
                     </a>
@@ -92,7 +92,7 @@ const TicketDetails1 = ({setChooseTicket}: Props) => {
                        Ticket Starting at 
                </p>
                <p className='text-2xl text-[#571845] font-semibold mt-3'>
-                    N104,100
+                    N{data.tickets[0].amount}
                </p>
                <button onClick={()=>setChooseTicket(true)}
                className="text-center text-white bg-[#571845] h-10 w-40 rounded-lg mt-6">

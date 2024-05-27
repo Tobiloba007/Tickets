@@ -7,7 +7,7 @@ import { LuCalendarX2 } from "react-icons/lu";
 const MembershipReport = () => {
 
   return (
-    <div className='flex items-center justify-between w-full bg-red-200 py-[18px] px-4 rounded-lg'>
+    <div className='flex items-center justify-between w-full mt-20 bg-white py-[18px] px-4 rounded-lg'>
                    <div className='flex flex-col items-start w-full'>
                        <p className='text-[13px] font-medium text-[#1A0313]'>Membership Report</p>
                        <div className='flex items-center justify-start mt-2'>

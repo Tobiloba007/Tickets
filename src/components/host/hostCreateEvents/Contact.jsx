@@ -6,6 +6,21 @@ import EventMedia from './EventMedia';
 
 
 const Contact = ({setActive, active, setActiveForm}) => {
+     const [first, setFirst] = useState('')
+     const [firstError, setFirstError] = useState(false);
+
+     const [last, setLast] = useState('')
+     const [lastError, setLastError] = useState(false);
+
+     const [email, setEmail] = useState('')
+     const [emailError, setEmailError] = useState(false);
+
+     const [phone, setPhone] = useState('')
+     const [phoneError, setPhoneError] = useState(false);
+
+     const [url, setUrl] = useState('')
+     const [urlError, setUrlError] = useState(false);
+
     const [dropdown, setDropdown] = useState(false)
     const [chooseSocials, setChooseSocials] = useState('')
 
@@ -17,6 +32,15 @@ const Contact = ({setActive, active, setActiveForm}) => {
         setDropdown(false)
     }
 
+
+    const isButtonDisabled = first === '' || last === '' || email === '' || phone === '' || url === '' || chooseSocials === ''
+
+    const values = {"first_name": first, "last_name": last, 'email': email, 'phone': phone, [chooseSocials]: url }
+
+    const handleProceed = () => {
+         setActive(4)
+         console.log(values)
+    }
 
 
   return (
@@ -52,8 +76,13 @@ const Contact = ({setActive, active, setActiveForm}) => {
                    <p className='text-[10px] text-[#16071F] font-medium pt-1 xl:text-[13px]'>
                         First name        
                    </p>
-                   <input className='h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
+                   <input className={`h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]
+                                      ${firstError && 'border-red-500'}`}
                    placeholder='John'
+                   value={first}
+                   onChange={(e)=>setFirst(e.target.value)}
+                   onBlur={()=>setFirstError(first.trim().length <= 1)}
+                   required
                     />
                </div>
 
@@ -62,8 +91,13 @@ const Contact = ({setActive, active, setActiveForm}) => {
                    <p className='text-[10px] text-[#16071F] font-medium pt-1 xl:text-[13px]'>
                         Last name     
                    </p>
-                   <input className='h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
+                   <input className={`h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]
+                                      ${lastError && 'border-red-500'} `}
                    placeholder='Doe'
+                   value={last}
+                   onChange={(e)=>setLast(e.target.value)}
+                   onBlur={()=>setLastError(last.trim().length <= 1)}
+                   required
                     />
                </div>
 
@@ -72,8 +106,14 @@ const Contact = ({setActive, active, setActiveForm}) => {
                    <p className='text-[10px] text-[#16071F] font-medium pt-1 xl:text-[13px]'>
                         Email     
                    </p>
-                   <input className='h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
+                   <input className={`h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]
+                                      ${emailError && 'border-red-500'}`}
                    placeholder='mail@johndoe.com'
+                   type='email'
+                   value={email}
+                   onChange={(e)=>setEmail(e.target.value)}
+                   onBlur={()=>setEmailError(email.trim().length <= 1)}
+                   required
                     />
                </div>
 
@@ -82,18 +122,25 @@ const Contact = ({setActive, active, setActiveForm}) => {
                    <p className='text-[10px] text-[#16071F] font-medium pt-1 xl:text-[13px]'>
                         Phone      
                    </p>
-                   <input className='h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
+                   <input className={`h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]
+                                      ${phoneError && 'border-red-500'}`}
                    placeholder='0901 234 5678'
+                   type='number'
+                   value={phone}
+                   onChange={(e)=>setPhone(e.target.value)}
+                   onBlur={()=>setPhoneError(phone.trim().length <= 1)}
+                   required
                     />
                </div>
 
                {/* SOCIALS */}
                <div className='ralative flex flex-col items-start w-full mt-2 md:w-[49%] xl:mt-5'>
                      <p className='text-[10px] text-[#16071F] font-medium pt-1 xl:text-[13px]'>
-                        Phone      
+                        Socials      
                      </p>
                      <div className='relative flex flex-col items-start w-full'>
-                         <input className='h-9 w-full border-[1px] border-[#dddddd] rounded-md bg-white  pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
+                         <input className={`h-9 w-full border-[1px] border-[#dddddd] rounded-md bg-white  pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]
+                                           ${chooseSocials === '' && 'border-red-500'}`}
                           placeholder='Enter the name of the event'
                           value={chooseSocials === '' ? 'Select App to connect' : chooseSocials}
                           disabled
@@ -120,8 +167,13 @@ const Contact = ({setActive, active, setActiveForm}) => {
 
                 {/* SOCIAL MEDIA LINKS */}
                <div className='flex flex-col items-start w-full mt-3 md:w-[49%] md:mt-6 xl:mt-10'>
-                  <input className='h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
-                  placeholder='Enter Username/@'
+                  <input className={`h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]
+                                     ${urlError && 'border-red-500'}`}
+                   placeholder='Enter Username/@'
+                   value={url}
+                   onChange={(e)=>setUrl(e.target.value)}
+                   onBlur={()=>setUrlError(url.trim().length <= 1)}
+                   required
                    />
                 </div>
           </div>
@@ -138,12 +190,13 @@ const Contact = ({setActive, active, setActiveForm}) => {
                    </p>
                </div>
 
-               <div onClick={()=>setActive(4)}
-               className='flex items-center justify-center w-28 h-8 rounded-md bg-[#571845] ml-5 md:w-20 xl:h-9'>
-                   <p className='text-[11px] text-[#ffffff] font-medium xl:text-xs'>
-                        Proceed    
-                   </p>
-               </div>
+               <button 
+               onClick={handleProceed}
+               disabled={isButtonDisabled}
+               className={`flex items-center justify-center w-28 h-8 text-xs text-white rounded-md bg-[#571845] ml-5 md:w-20 xl:h-9 xl:text-xs
+                             ${isButtonDisabled && 'bg-[#9f969c]'}`}>
+                   Proceed
+               </button>
           </div>
 
           </div>

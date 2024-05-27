@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { HostHelpCentre } from '../../components/host/hostSupport/HostHelpCentre'
 import { HostIssueTable } from '../../components/host/hostSupport/HostIssueTable'
 import { HostIssueInput } from '../../components/host/hostSupport/HostIssueInput'
+import { HostHelpCentre } from '../../components/host/hostSupport/HostHelpCentre'
 
 export const HostSupport: React.FC = () => {
   const [createIssue, setCreateIssue] = useState<number>(0)

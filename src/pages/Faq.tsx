@@ -1,8 +1,8 @@
 import Footer from '../components/general/Footer'
 import FaqIntro from '../components/faq/FaqIntro'
-import HostEvent from '../components/home/HostEvent'
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import HostEvent from '../components/home/HostEvent';
 
 const Faq = () => {
   const { pathname } = useLocation();

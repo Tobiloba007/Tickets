@@ -3,7 +3,7 @@ import Navbar from '../general/Navbar'
 
 
 
-const TicketIntro = () => {
+const TicketIntro = ({data}) => {
   return (
     <div className='flex flex-col items-center justify-start w-full'>
         <Navbar button1='Go to Dashboard' button2='Log out' link1='/' link2='/' />
@@ -15,10 +15,10 @@ const TicketIntro = () => {
                 <div className='absolute top-[45%] flex flex-col items-center justify-center w-full z-50 xl:top-[50%]'>
                     <button className='text-center text-xs h-6 rounded-md text-[#2F2623] bg-[#FFDE9C] px-4 lg:h-8 lg:px-6 lg:font-medium 
                                        xl:rounded-lg xl:h-9 xl:px-8 xl:text-base'>
-                        in 3 days
+                        {data.time_and_date.slice(0, 10)}
                     </button>
                     <p className='text-2xl font-medium text-white mt-3 w-[60%] text-center md:text-3xl lg:text-[35px] lg:mt-6 xl:text-[50px] xl:mt-8'>
-                          Flytime Fest, Asake
+                          {data.event_name}
                     </p>
                 </div>
 

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import PricingIntro from '../components/pricing/PricingIntro'
-import HostEvent from '../components/home/HostEvent'
 import Footer from '../components/general/Footer'
 import { useLocation } from 'react-router-dom'
+import HostEvent from '../components/home/HostEvent'
 
 const Pricing = () => {
   const { pathname } = useLocation();

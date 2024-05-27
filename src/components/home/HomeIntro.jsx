@@ -5,11 +5,19 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
-type Props = {}
 
-const HomeIntro = (props: Props) => {
+
+const HomeIntro = () => {
     const navigate = useNavigate();
+
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+
+    const user = useSelector((state) => state.auth.user)
+
+
       
   return (
     <div className='flex flex-col items-center justify-start w-full h-screen bg-cover bg-center px-6 rounded-b-3xl md:rounded-b-[0px] lg:rounded-b-[40px]' 
@@ -25,11 +33,15 @@ const HomeIntro = (props: Props) => {
         </div>
 
         <div className='flex flex-col justify-center items-center w-full mt-14 px-6 md:flex-row mb-14 lg:mb-16 xl:mb-24'>
-            <button onClick={()=>navigate('/login')}
+            <button onClick={()=>navigate(isLoggedIn === true && user.user_type === 'user' ?  '/login'
+                                         :isLoggedIn === true && user.user_type === 'host' ?  '/hostDashboard' 
+                                         : '/login')}
             className='text-center text-[17px] font-semibold text-[#571845] bg-[#EEE8EC] h-[45px] w-full rounded-[9px] md:w-[180px] xl:w-[200px]'>
                  Host an event 
             </button>
-            <button onClick={()=>navigate('/login')}
+            <button onClick={()=>navigate(isLoggedIn === true && user.user_type === 'user' ?  '/userDashboard'
+                                        :isLoggedIn === true && user.user_type === 'host' ?  '/login' 
+                                        : '/login')}
             className='text-center text-[17px] font-semibold text-[#571845] bg-[#FFC655] h-[45px] w-full rounded-[9px] mt-4 md:w-[180px] md:ml-5 md:mt-0 xl:w-[200px]'>
                  Buy tickets 
             </button>

@@ -28,6 +28,8 @@ const HostEvents = () => {
         },
     ]
 
+    
+
 
 
   return (
@@ -52,7 +54,7 @@ const HostEvents = () => {
           </div>
           
 
-          <div className='flex items-center justify-start w-full mt-10 px-5 [&>div]:flex-shrink-0 hide-scrollbar z-50 md:mt-11 md:-mb-8 lg:px-6 lg:-mb-11 lg:mt-12 xl:px-8 xl:-mb-14 xl:mt-14'>
+          <div className='flex items-center justify-start w-full mt-10 px-5 [&>div]:flex-shrink-0 hide-scrollbar z-30 md:mt-11 md:-mb-8 lg:px-6 lg:-mb-11 lg:mt-12 xl:px-8 xl:-mb-14 xl:mt-14'>
                 {tabs.map((item)=>{
                     return(
                         <div onClick={()=>setActive(item.id)}

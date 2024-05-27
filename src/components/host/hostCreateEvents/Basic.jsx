@@ -8,6 +8,16 @@ import EventFormat from './EventFormat';
 
 
 const Basic = ({setActiveForm}) => {
+     const [eventName, setEventName] = useState('')
+     const [eventNameError, setEventNameError] = useState(false);
+     const [date, setDate] = useState('')
+     const [dateError, setDateError] = useState(false);
+     const [time, setTime] = useState('')
+     const [timeError, setTimeError] = useState(false);
+     const [desc, setDesc] = useState('')
+     const [descError, setDescError] = useState(false);
+
+
     const [active, setActive] = useState(1)
 
     const [toggleCat, setTogleCat] = useState(false)
@@ -30,6 +40,16 @@ const Basic = ({setActiveForm}) => {
     const handleCity = (item) => {
         setChooseCity(item)
         setTogleCity(false)
+    }
+
+
+    const isButtonDisabled = eventName === '' || date === '' || time === '' || desc === '' || chooseCat === '' || chooseCity === ''
+
+    const values = {"event_name": eventName, "event_description": desc, 'category_id': chooseCat, 'city': chooseCity, 'time_and_date': `${date}T${time}` }
+
+    const handleProceed = () => {
+         setActive(2)
+         console.log(values)
     }
 
   return (
@@ -63,8 +83,13 @@ const Basic = ({setActiveForm}) => {
               <p className='text-[11px] text-[#16071F] font-medium pt-1 xl:text-sm'>
                    Event Name         
               </p>
-              <input className='h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
+              <input className={`h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]
+                                  ${eventNameError && 'border-red-500'}`}
               placeholder='Enter the name of the event'
+              value={eventName}
+              onChange={(e)=>setEventName(e.target.value)}
+              onBlur={()=>setEventNameError(eventName.trim().length <= 1)}
+              required
                />
           </div>
 
@@ -72,7 +97,8 @@ const Basic = ({setActiveForm}) => {
                    {/* CATEGORY */}
                 <div className='ralative flex flex-col items-start w-full mt-4 md:w-[49%]'>
                   <div className='relative flex flex-col items-start w-full'>
-                      <input className='h-9 w-full border-[1px] border-[#dddddd] rounded-md bg-white  pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
+                      <input className={`h-9 w-full border-[1px] border-[#dddddd] rounded-md bg-white  pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]
+                      ${chooseCat === '' && 'border-red-500'}`}
                        placeholder='Enter the name of the event'
                        value={chooseCat === '' ? 'Select Category' : chooseCat}
                        disabled
@@ -84,7 +110,7 @@ const Basic = ({setActiveForm}) => {
                       }
                   </div>
                   {toggleCat &&
-                  <div className='absolute mt-10 z-30 flex flex-col items-start justify-center w-[78%] py-1 rounded-md bg-white cursor-pointer md:w-[30%] lg:w-[15%] xl:mt-12'>
+                  <div className='absolute mt-10 z-30 flex flex-col items-start justify-center w-[78%] py-1 rounded-md bg-white cursor-pointer border-[1px] border-[#dddddd] md:w-[30%] lg:w-[15%] xl:mt-12'>
                       {category.map((item, index) => {
                         return(
                         <p onClick={()=>handleCategory(item)} key={index} 
@@ -100,7 +126,8 @@ const Basic = ({setActiveForm}) => {
                 {/* CITY IN NIGERIA */}
                 <div className='flex flex-col items-start w-full mt-4 md:w-[49%]'>
                   <div className='relative flex flex-col items-start w-full'>
-                      <input className='h-9 w-full border-[1px] border-[#dddddd] rounded-md bg-white  pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
+                      <input className={`h-9 w-full border-[1px] border-[#dddddd] rounded-md bg-white  pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]
+                                        ${chooseCity === '' && 'border-red-500'}`}
                        placeholder='Enter the name of the event'
                        value={chooseCity === '' ? 'Select City in Nigeria' : chooseCity}
                        disabled
@@ -112,7 +139,7 @@ const Basic = ({setActiveForm}) => {
                       }
                   </div>
                   {toggleCity &&
-                  <div className='absolute mt-10 z-30 flex flex-col items-start justify-center w-[78%] py-1 rounded-md bg-white cursor-pointer md:w-[30%] lg:w-[15%] xl:mt-12'>
+                  <div className='absolute mt-10 z-30 flex flex-col items-start justify-center w-[78%] py-1 rounded-md border-[1px] border-[#dddddd] bg-white cursor-pointer md:w-[30%] lg:w-[15%] xl:mt-12'>
                       {cities.map((item, index) => {
                         return(
                         <p onClick={()=>handleCity(item)} key={index} 
@@ -159,8 +186,13 @@ const Basic = ({setActiveForm}) => {
                    <p className='text-[10px] text-[#16071F] font-medium pt-1 xl:text-sm'>
                         Select Date         
                    </p>
-                   <input className='h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
+                   <input className={`h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] 
+                                      xl:h-11 xl:text-[13px] ${dateError && 'border-red-500'}`}
                    placeholder='dd/mm/yy'
+                   value={date}
+                   onChange={(e)=>setDate(e.target.value)}
+                   onBlur={()=>setDateError(date.trim().length <= 1)}
+                   required
                     />
                </div>
                
@@ -168,8 +200,13 @@ const Basic = ({setActiveForm}) => {
                    <p className='text-[10px] text-[#16071F] font-medium pt-1 xl:text-sm'>
                         Time of Day     
                    </p>
-                   <input className='h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
+                   <input className={`h-9 w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 pr-2 text-[11px] outline-[#EEE8EC] 
+                                      xl:h-11 xl:text-[13px] ${timeError && 'border-red-500'}`}
                    placeholder='07:00 PM'
+                   value={time}
+                   onChange={(e)=>setTime(e.target.value)}
+                   onBlur={()=>setTimeError(time.trim().length <= 1)}
+                   required
                     />
                </div>
           </div>
@@ -190,9 +227,14 @@ const Basic = ({setActiveForm}) => {
                    <p className='text-[10px] text-[#16071F] font-medium pt-1 xl:text-sm'>
                         Description     
                    </p>
-                   <textarea className='w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 px-2 pt-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
+                   <textarea className={`w-full border-[1px] border-[#dddddd] rounded-md mt-1 pl-4 px-2 pt-2 text-[11px] outline-[#EEE8EC] 
+                                          xl:h-11 xl:text-[13px] ${descError && 'border-red-500'}`}
                    rows="6" cols="50"
                    placeholder='Describe the event'
+                   value={desc}
+                   onChange={(e)=>setDesc(e.target.value)}
+                   onBlur={()=>setDescError(desc.trim().length <= 1)}
+                   required
                     />
           </div>
 
@@ -234,12 +276,13 @@ const Basic = ({setActiveForm}) => {
                    </p>
                </div>
 
-               <div onClick={()=>setActive(2)}
-               className='flex items-center justify-center w-28 h-8 rounded-md bg-[#571845] ml-5 md:w-20 xl:h-9'>
-                   <p className='text-[11px] text-[#ffffff] font-medium xl:text-xs'>
-                        Proceed    
-                   </p>
-               </div>
+               <button 
+               onClick={handleProceed}
+               disabled={isButtonDisabled}
+               className={`flex items-center justify-center w-28 h-8 text-xs text-white rounded-md bg-[#571845] ml-5 md:w-20 xl:h-9 xl:text-xs
+                             ${isButtonDisabled && 'bg-[#9f969c]'}`}>
+                   Proceed
+               </button>
           </div>
 
           </div>

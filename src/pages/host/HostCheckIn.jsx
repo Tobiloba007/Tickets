@@ -27,7 +27,7 @@ const HostCheckIn = () => {
                       <p className='text-xs font-normal text-[#1A0313] xl:text-sm'>Ticket ID</p>
                       <p className='text-[10px] font-normal text-[#1A0313] pt-[2px] xl:text-xs'>Enter the Ticket ID to check in attendees</p>
                       <input className='h-9 w-full rounded-md border-[1px] border-[#EEE8EC] mt-[10px] pl-4 text-[10px] outline-[#571845] xl:mt-3 xl:h-11 xl:text-xs' 
-                      placeholder='Enter the Ticked ID'
+                      placeholder='Enter the Ticket ID'
                       />
                       <div onClick={()=>setProceed(true)}
                       className='flex items-center justify-center px-5 h-8 rounded-md bg-[#571845] mt-5 xl:mt-6 xl:h-10 xl:px-7 xl:rounded-lg'>

@@ -5,21 +5,26 @@ import Footer from '../components/general/Footer'
 import TicketDetails2 from '../components/ticket/TicketDetails2'
 import { useLocation } from 'react-router-dom'
 
-export const TicketPage: React.FC = () => {
-    const [chosseTicket, setChooseTicket] = useState<boolean>(false);
+
+export const TicketPage = () => {
+    const location = useLocation();
+    const { state } = location;
+
+
+    const [chosseTicket, setChooseTicket] = useState(false);
 
     const { pathname } = useLocation();
 
     useEffect(() => {
       window.scrollTo(0, 0);
-    }, [pathname]);
+    }, [pathname, state]);
 
   return (
     <div className='max-w-screen-2xl mx-auto font-outfit bg-[#FAFAFA]'>
-         <TicketIntro />
+         <TicketIntro data={state} />
          {chosseTicket
-         ?<TicketDetails2 setChooseTicket={setChooseTicket} />
-         :<TicketDetails1 setChooseTicket={setChooseTicket} />
+         ?<TicketDetails2 data={state} setChooseTicket={setChooseTicket} />
+         :<TicketDetails1 data={state} setChooseTicket={setChooseTicket} />
          }
          <Footer />
     </div>

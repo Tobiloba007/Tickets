@@ -23,7 +23,7 @@ export const UserHome = () => {
 
 
   return (
-    <div className='flex flex-col items-center justify-center w-full h-full'>
+    <div className='flex flex-col items-center justify-start w-full h-full'>
     <div className='flex-col items-center justify-start w-full h-full overflow-y-scroll [&>div]:flex-shrink-0 hide-scrollbar'>
        <div className='flex items-start justify-between w-full mt-14 px-5 lg:hidden xl:px-8'>
           <p className='text-[#571845] font-bold text-lg md:text-xl'>
@@ -43,22 +43,24 @@ export const UserHome = () => {
        <div className='flex flex-col items-center w-full lg:hidden'>
          <UserHomeTickets setModal={setModal} />
          <UserHomeScroll />
-         <UserRecommended />
+         <UserRecommended setModal={setModal} />
        </div>
 
        {/* LARGE SCREEN */}
        <div className='hidden lg:flex flex-col items-center w-full'>
          <UserHomeScroll />
          <UserHomeTickets setModal={setModal} />
-         <UserRecommended />
+         <UserRecommended setModal={setModal} />
        </div>
 
 
     </div>
+
        {modal && <div onClick={()=>setModal(false)} className='fixed top-0 z-50 opacity-40 h-[100vh] w-full bg-black lg:w-[78%] xl:w-[82%]'></div>}
+
        {modal && 
-       <div className='flex items-center justify-center w-full lg:w-[50%] xl:w-[82%]'>
-         <UserHomeModal />
+       <div className='absolute top-80 z-[200] flex items-start justify-center w-[85%] md:top-10 md:w-[80%] lg:w-[65%] xl:w-[55%]'>
+         <UserHomeModal data={modal} />
        </div>
        }
     </div>

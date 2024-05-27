@@ -5,6 +5,8 @@ import { IoMdCheckmark } from "react-icons/io";
 import { LoginAccount } from '../../features/authentication/AuthActions';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { PiEye, PiEyeSlash } from "react-icons/pi";
+
 
 
 
@@ -14,6 +16,8 @@ export const Login = () => {
   const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordErrror, setPasswordError] = useState(false);
+
+  const [hide, setHide] = useState(false)
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -72,15 +76,21 @@ export const Login = () => {
                      <p className='text-xs font-medium text-[#2A1D34] xl:text-sm'>
                            Confirm password   
                      </p>
-                     <input className={`h-9 w-full border-[1px] border-[#E0E5F2] rounded-md pl-4 mt-1 text-[10px] outline-[#571845] 
-                     xl:h-10 xl:text-xs ${passwordErrror && 'border-red-500'}`}
-                     placeholder='password'
-                     value={password}
-                     onChange={(e)=>setPassword(e.target.value)}
-                     required
-                     type='text'
-                     onBlur={()=>setPasswordError(password.trim().length <= 6)}
-                     />
+                     <div className='relative w-full'>
+                         <input className={`h-9 w-full border-[1px] border-[#E0E5F2] rounded-md pl-4 mt-1 text-[10px] outline-[#571845] 
+                         xl:h-10 xl:text-xs ${passwordErrror && 'border-red-500'}`}
+                         placeholder='password'
+                         value={password}
+                         onChange={(e)=>setPassword(e.target.value)}
+                         required
+                         type={hide ? 'text' : 'password'}
+                         onBlur={()=>setPasswordError(password.trim().length <= 6)}
+                         />
+                         {hide
+                         ?<PiEyeSlash onClick={()=>setHide(!hide)} className='absolute top-3 right-4 text-xl' />
+                         :<PiEye onClick={()=>setHide(!hide)} className='absolute top-3 right-4 text-xl' />
+                         }
+                     </div>
                      {passwordErrror && !password && <p className='text-red-500 text-[10px] pt-1'>Password is Required</p> }
               </div>
 

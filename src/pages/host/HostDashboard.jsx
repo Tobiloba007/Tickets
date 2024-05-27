@@ -11,7 +11,7 @@ import Wallet from '../../assets/icons/wallet.svg'
 import Scan from '../../assets/icons/scan.svg'
 import Avatar from '../../assets/avatar.jpg'
 import { VscMenu } from "react-icons/vsc";
-import { BiSolidDownArrow } from "react-icons/bi";
+import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CiLogout } from "react-icons/ci";
@@ -21,9 +21,9 @@ import { HostSupport } from './HostSupport';
 import HostWallet from './HostWallet';
 import HostPackage from './HostPackage';
 import HostCheckIn from './HostCheckIn';
-import HostEvents from './HostEvents';
 import HostOverview from './HostOverview';
 import HostCreateEvents from './HostCreateEvents';
+import HostEvents from './HostEvents';
 
 
 
@@ -32,6 +32,9 @@ import HostCreateEvents from './HostCreateEvents';
 export const HostDashboard = () => {
   const [select, setSelect] = useState(1);
   const [menu, setMenu] = useState(false);
+
+  const [dropdown, setDropdown] = useState(false);
+
 
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
@@ -105,7 +108,8 @@ export const HostDashboard = () => {
           { menu &&
           <div className={`fixed flex flex-col items-center justify-start bg-white shadow-slate-900 w-[65%] h-screen z-50 px-5 
                           py-6 md:w-[30%] lg:hidden`}>
-              <div className='flex items-center justify-start ml-8 w-full'>
+              <div onClick={()=>navigate('/')} 
+              className='flex items-center justify-start ml-8 w-full'>
                 <img className='w-24'
                 src={Logo} alt="Logo" />
               </div>
@@ -187,11 +191,17 @@ export const HostDashboard = () => {
                       <p className='hidden md:flex text-sm font-medium text-[#571845] ml-3 xl:text-base xl:ml-4'>
                           Awotundun Maimunah 
                       </p>
-                      <div className='hidden lg:flex items-center justify-center h-[31px] w-[29px] rounded-md bg-[#EEE8EC] ml-5 
+                      <div onClick={()=>setDropdown(!dropdown)} className='hidden lg:flex items-center justify-center h-[31px] w-[29px] rounded-md bg-[#EEE8EC] ml-5 
                                       xl:w-[31px] xl:ml-7'>
-                          <BiSolidDownArrow className='text-[#571845] text-[10px]' />
+                                      {
+                                        dropdown
+                                        ?<BiSolidUpArrow onClick={()=>setDropdown(!dropdown)} className='text-[#571845] text-[10px]' />
+                                        :<BiSolidDownArrow onClick={()=>setDropdown(!dropdown)} className='text-[#571845] text-[10px]' />
+                                      }
                       </div>
                     </div>
+
+
                     <div onClick={()=>setMenu(!menu)}
                     className='flex items-center justify-center h-[36px] w-[36px] rounded-lg bg-[#EEE8EC] ml-4 md:ml-5 lg:hidden'>
                       {menu
@@ -201,6 +211,22 @@ export const HostDashboard = () => {
                     </div>
                   </div>
               </div>
+
+
+              {dropdown &&
+                <div className='hidden absolute right-5 top-[70px] lg:flex flex-col items-start justify-center w-36 py-3 z-[200] bg-white border-[1px] border-[#EEE8EC] rounded-md shadow-xl'>
+                   <p onClick={()=>navigate('/')}
+                   className='text-[#571845] text-xs font-medium h-7 hover:bg-[#EEE8EC] w-full px-5 flex items-center'>
+                        Home
+                   </p>
+
+                   <p onClick={handleLogout}
+                   className='text-[#571845] text-xs font-medium h-7 hover:bg-[#EEE8EC] w-full px-5 flex items-center'>
+                        Logout
+                        <CiLogout className='text-sm ml-2' />
+                   </p>
+                </div>
+                }
 
 
               {/* CHILDREN */}

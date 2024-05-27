@@ -4,11 +4,7 @@ import issues from '../../../assets/icons/issues.svg'
 
 
 
-interface componentProps {
-    setCreateIssue: React.Dispatch<React.SetStateAction<number>>;
-}
-
-export const CreateIssueTable: React.FC<componentProps> = (props) => {
+export const HostIssueTable = (props) => {
   return (
     <div className='flex flex-col items-center justify-start w-full h-full mb-16'>
          <div className='flex items-center justify-between w-full'>

@@ -34,7 +34,7 @@ const HostWalletTable = () => {
 
                     <CiSearch className='absolute text-xl left-3 text-[#1A0313] lg:left-[135px] lg:text-lg xl:text-xl xl:left-[145px]' />
 
-                    <div className='absolute right-3 flex items-center lg:justify-center lg:relative lg:right-0 lg:h-8 lg:border-[1px] border-[#C6C0C4] rounded-md lg:px-2 lg:w-[170px] xl:w-[180px] xl:h-9'>
+                    <div className='absolute right-3 flex items-center lg:justify-center lg:relative lg:right-0 lg:h-8 lg:border-[1px] border-[#C6C0C4] rounded-md lg:px-2 lg:w-[185px] xl:w-[180px] xl:h-9'>
                         <IoFilterOutline className='text-[#1A0313] lg:text-base xl:text-xl' />
                         <p className='flex items-center text-xs text-[#837780] font-normal ml-2 lg:text-[10px] lg:pl-1 xl:text-xs'>Filter<span className='hidden lg:flex pl-1'> & Sort</span></p>
                     </div>
