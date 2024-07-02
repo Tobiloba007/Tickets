@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import image1 from '../../assets/image8.jpg'
-import image2 from '../../assets/image11.jpg'
-import image3 from '../../assets/image12.jpg'
 import { useDispatch } from 'react-redux'
 import { allEvents } from '../../features/EventActions'
 import { useNavigate } from 'react-router-dom'

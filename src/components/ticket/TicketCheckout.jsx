@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import calendar from '../../assets/icons/calendar-2.svg'
 import Info from '../../assets/icons/information.svg'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { purchaseEvents } from '../../features/EventActions';
 
 
 
@@ -17,7 +19,13 @@ const TicketCheckout = (props) => {
     const [phone, setPhone] = useState('');
     const [phoneError, setPhoneError] = useState(false);
 
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
 
+
+    const user = useSelector((state) => state.auth.user)
+
+    const dispatch = useDispatch();
 
     const isButtonDisabled = first_name === '' || last_name === '' || email === '' || confirmEmail === '' || phone === ''
                            || fNameError === true || lNameError === true || phoneError === true || emailError === true || confirmEmailError === true
@@ -26,10 +34,33 @@ const TicketCheckout = (props) => {
 
     const navigate = useNavigate();
 
+    const purchaseValues = {
+     "ticket_details": [
+         {
+             "name": "Gold",
+             "quantity": props.value,
+         }
+     ],
+     "event_id": props.data.id,
+     "payment_method": "flutterwave",
+     "customer_details": [
+         {
+             "name": first_name + '' + last_name,
+             "email": email,
+             "phone_number": phone
+         },
+        //  {
+        //      "name": "Lara Damion",
+        //      "email": "laradamion5@gmail.com",
+        //      "phone_number": "08153329482"
+        //  }
+     ]
+    }
+
     const handleSubmit = () => {
-      navigate('/ticketSuccess', {state: email})
-      console.log(values)
-    
+      dispatch(purchaseEvents(purchaseValues, setLoading, setError))
+     //  navigate('/ticketSuccess', {state: email})
+     //  console.log(purchaseValues)
     }
 
 
@@ -235,9 +266,14 @@ const TicketCheckout = (props) => {
 
               <button onClick={handleSubmit}
               disabled={isButtonDisabled}
-              className={`text-sm text-white bg-[#571845] rounded-md h-10 w-full mt-10 xl:h-12 xl:rounded-lg xl:text-xl xl:font-medium
+              className={`flex items-center justify-center text-sm text-white bg-[#571845] rounded-md h-10 w-full mt-10 xl:h-12 xl:rounded-lg xl:text-xl xl:font-medium
                           ${isButtonDisabled && 'bg-[#9f969c]'}`}>
-                   Check out 
+                   { loading
+                    ?<div className="relative flex items-center justify-center w-7 h-7 border-4 border-gray-500 border-solid rounded-full">
+                       <div className="absolute w-7 h-7 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+                     </div>
+                    : 'Check out'
+                   }
               </button>
           </div>
 

@@ -46,6 +46,7 @@ export const UserHomeTickets: React.FC<componentProps> = (props) => {
         setHover(false)
     }
 
+
   return (
     <div className='flex flex-col items-start justify-start w-full mt-7 lg:mt-4'>
          <p className='text-base font-bold text-[#571845] px-5 xl:px-8'>
@@ -60,7 +61,8 @@ export const UserHomeTickets: React.FC<componentProps> = (props) => {
                   <img className='w-full'
                   src={ticket} alt="ticket" />
                   {hover === item.id &&
-                  <img onClick={()=>props.setModal(true)}
+                  <img 
+                //   onClick={()=>props.setModal(true)}
                   className={`absolute top-0 w-full mr-3`}
                   src={overlay} alt="overlay" />
                   }

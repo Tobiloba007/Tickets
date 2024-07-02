@@ -8,11 +8,17 @@ import { BsCalendar4Week } from "react-icons/bs";
 
 const Coupon = ({setActiveForm}) => {
     const [select, setSelect] = useState('Percentage')
+    const [coupon, setCoupon] = useState([1]);
+
 
 
     const handleSelect = (item) => {
         setSelect(item)
     }
+
+    const handleAddCoupon = () => {
+     setCoupon([...coupon, coupon.length + 1]);
+   };
 
   return (
     <div className='flex flex-col items-start justify-start w-full bg-white rounded-lg px-4 py-5 xl:px-8 xl:py-9'>
@@ -101,9 +107,8 @@ const Coupon = ({setActiveForm}) => {
 
           </div>
 
-
-
-          <div className='flex flex-col item-center justify-between w-full mt-5 md:flex-row xl:mt-7'>
+          {coupon.map((item, index) => (
+          <div key={index} className='flex flex-col item-center justify-between w-full mt-5 md:flex-row xl:mt-7'>
                 {select === 'Percentage' &&
                 <div className='w-full md:w-[48.5%]'>
                    <p className='text-[11px] text-[#16071F] mb-[2px] font-medium xl:text-xs xl:mb-1'>
@@ -135,8 +140,10 @@ const Coupon = ({setActiveForm}) => {
                    />
                 </div>
           </div>
+          ))}
 
-          <div className='flex items-center justify-center h-6 px-2 rounded-md bg-[#EEE8EC] mt-4 md:mt-5 lg:h-7 lg:px-3'>
+          <div onClick={handleAddCoupon}
+          className='flex items-center justify-center h-6 px-2 rounded-md bg-[#EEE8EC] mt-4 md:mt-5 lg:h-7 lg:px-3'>
               <IoAdd className='text-[#571845] text-sm' />
               <p className='text-[#571845] text-[9px] ml-[6px] md:text-[10px] xl:text-[11px]'>
                    Add Coupon

@@ -125,3 +125,32 @@ export const allEvents = (setAll, setLoading, setError) => async () => {
       setLoading(false)
     
   };
+
+
+  // PURCHASE EVENTS
+export const purchaseEvents = (purchaseValues, setLoading, setError) => async () => {
+  setLoading(true)
+  try{
+    const response = await axios.post(`${BASE_URL}/ticket`, purchaseValues);
+    if (response.status === 201) {
+      console.log('Ticket Purchase Successfull');
+      const url = response.data.data.payment_url
+      window.open(url, '_blank');
+    } else if (response.status !== 201) {
+      console.log('Registration failed with status code:', response.status);
+    } 
+  } catch(error) {
+      if (error.response) {
+        // The server responded with an error (e.g., HTTP status code 4xx or 5xx)
+        setError(error.response.data.message)
+        console.log(error.response.data.message)
+        console.error('API Error:', error.response.status);
+      } else if (error.request) {
+        // The request was made but no response was received (e.g., network issue)
+        setError('Please check your internet connection...')
+        console.error('Network Error:', error.request);
+      } 
+    };
+    setLoading(false)
+  
+};

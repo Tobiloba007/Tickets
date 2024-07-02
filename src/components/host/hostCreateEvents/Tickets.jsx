@@ -10,11 +10,21 @@ import { TbCurrencyNaira } from "react-icons/tb";
 const Tickets = ({setActiveForm}) => {
     const [select, setSelect] = useState('Paid')
     const [switchToggle, setSwitchToggle] = useState(true);
+    const [inputs, setInputs] = useState([1]);
+
 
 
     const handleSelect = (item) => {
         setSelect(item)
     }
+
+    const handleAddTicket = () => {
+        setInputs([...inputs, inputs.length + 1]);
+      };
+
+      const handleSwitch = () => {
+        setSwitchToggle(!switchToggle)
+      }
 
   return (
     <div className='flex flex-col items-start justify-start w-full bg-white rounded-lg px-4 py-5 xl:px-8 xl:py-9'>
@@ -93,7 +103,7 @@ const Tickets = ({setActiveForm}) => {
              </div>
 
              <div className='flex items-center'>
-                 <div onClick={()=>setSwitchToggle(!switchToggle)}
+                 <div onClick={handleSwitch}
                  className={`flex items-center w-7 h-4 px-[2px] rounded-xl ${switchToggle === true ? 'justify-end bg-[#571845]' : 'justify-start bg-[#A4A4A4]'}`}>
                      <div className='h-3 w-3 rounded-full bg-white'></div>
                  </div>
@@ -107,7 +117,8 @@ const Tickets = ({setActiveForm}) => {
           </div>
 
 
-          <div className='flex item-center justify-between w-full mt-4'>
+          {inputs.map((item, index) => (
+          <div key={index} className='flex item-center justify-between w-full mt-4'>
                 <input className='h-9 w-[48.5%] border-[1px] border-[#dddddd] rounded-md bg-white  pl-4 pr-2 text-[11px] outline-[#EEE8EC] xl:h-11 xl:text-[13px]'
                 placeholder='Regular'
                 />
@@ -119,9 +130,11 @@ const Tickets = ({setActiveForm}) => {
                    <TbCurrencyNaira className='absolute top-[10px] left-4 xl:top-[14px]' />
                 </div>
           </div>
+         ))}
 
           {switchToggle &&
-          <div className='flex items-center justify-center h-6 px-2 rounded-md bg-[#EEE8EC] mt-3 md:mt-4 lg:h-7 lg:px-3'>
+          <div onClick={handleAddTicket}
+          className='flex items-center justify-center h-6 px-2 rounded-md bg-[#EEE8EC] mt-3 md:mt-4 lg:h-7 lg:px-3'>
               <IoAdd className='text-[#571845] text-sm' />
               <p className='text-[#571845] text-[9px] ml-[6px] md:text-[10px] xl:text-[11px]'>
                    Add Ticket

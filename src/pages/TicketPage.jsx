@@ -19,6 +19,7 @@ export const TicketPage = () => {
       window.scrollTo(0, 0);
     }, [pathname, state]);
 
+    
   return (
     <div className='max-w-screen-2xl mx-auto font-outfit bg-[#FAFAFA]'>
          <TicketIntro data={state} />

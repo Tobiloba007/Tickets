@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import calendar from '../../assets/icons/calendar-2.svg'
 import { HiOutlineMinus, HiOutlinePlus } from "react-icons/hi2";
+import { useDispatch, useSelector } from 'react-redux';
+import { purchaseEvents } from '../../features/EventActions';
 
 
 
@@ -21,6 +23,15 @@ const TicketSummary = (props) => {
 //   useEffect(()=>{
 //      console.log(props.data, 'DATAsss')
 //   },[])
+
+
+   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+
+    const isButtonDisabled = isLoggedIn === false 
+    
+    const handlePurchase = () => {
+      !isButtonDisabled && props.setCheckout(true)
+    }
 
 
   return (
@@ -89,10 +100,10 @@ const TicketSummary = (props) => {
 
           {/* RIGHT CARD */}
           <div className='flex flex-col items-center justify-start w-full border-[1px] border-[#dddddd] rounded-lg bg-white 
-                               py-4 mt-3 shadow-slate-500 px-4 md:mt-12 md:w-[35%] md:h-80 md:ml-3 lg:w-[30%] xl:text-base xl:h-96 xl:px-6'>
+                               pt-4 pb-2 mt-3 shadow-slate-500 px-4 md:mt-12 md:w-[35%] md:h-80 md:ml-3 lg:w-[30%] lg:pb-1 xl:text-base xl:h-96 xl:px-6'>
               <div className='flex items-center justify-between w-full mb-3'>
                  <p className='text-sm text-[#331F2D] font-semibold lg:text-base xl:text-lg'>
-                     Summary 
+                     Summary
                  </p>
                  <p className='text-xs text-[#571845] font-semibold underline underline-offset-1 xl:text-sm'>
                      Coupon 
@@ -150,10 +161,17 @@ const TicketSummary = (props) => {
                  </div>
               </div>
 
-              <button onClick={()=>props.setCheckout(true)}
-              className='text-sm text-white bg-[#571845] rounded-md h-10 w-full mt-10 xl:h-12 xl:rounded-lg xl:text-xl xl:font-medium'>
+              <button onClick={handlePurchase}
+              disabled={isButtonDisabled}
+              className={`flex items-center justify-center text-sm text-white bg-[#571845] rounded-md h-10 w-full mt-8 xl:h-12 xl:rounded-lg xl:text-xl xl:font-medium ${isButtonDisabled && 'opacity-10'}`}>
                    Continue
               </button>
+              {
+                isButtonDisabled &&
+                <p className='text-xs text-red-400 font-medium w-full text-start mt-2 xl:text-base'>
+                     you need to login to proceed
+                </p>
+              }
           </div>
 
     </div>

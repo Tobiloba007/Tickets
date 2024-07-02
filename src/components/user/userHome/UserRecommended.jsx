@@ -28,12 +28,12 @@ export const UserRecommended = ({setModal}) => {
         dispatch(trendingEvents(setTrending, setLoading, setError))
         // console.log(generalEvents, 'General Events')
       }, [dispatch])
+      
 
-    
     const handleTicket = (item) => {
-        setModal(item)
-        // console.log(item, 'TICKET ITEM')
-    }
+        navigate('/ticketPage', {state: item});
+        // console.log(item)
+      }
 
   return (
     <div className='flex flex-col items-center justify-start w-full bg-[#FAFAFA] mt-2 pb-10 lg:mt-8 xl:mt-11'>
@@ -120,6 +120,7 @@ export const UserRecommended = ({setModal}) => {
         </div>
         }
 
+
         {select === 'Business' &&
         <div className='flex items-center justify-start w-full mt-7 px-5 overflow-x-auto [&>div]:flex-shrink-0 hide-scrollbar xl:px-8'>
            {events.map((item) => {
@@ -143,6 +144,7 @@ export const UserRecommended = ({setModal}) => {
             })}
         </div>
         }
+
 
         {select === 'Festival' &&
         <div className='flex items-center justify-start w-full mt-7 px-5 overflow-x-auto [&>div]:flex-shrink-0 hide-scrollbar xl:px-8'>
@@ -168,6 +170,7 @@ export const UserRecommended = ({setModal}) => {
         </div>
         }
 
+
         {select === 'Conference' &&
         <div className='flex items-center justify-start w-full mt-7 px-5 overflow-x-auto [&>div]:flex-shrink-0 hide-scrollbar xl:px-8'>
            {events.map((item) => {
@@ -191,6 +194,7 @@ export const UserRecommended = ({setModal}) => {
             })}
         </div>
         }
+
 
     </div>
   )

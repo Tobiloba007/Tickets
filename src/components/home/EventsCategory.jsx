@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import carousel1 from '../../assets/carousel1.jpg'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { upcomingEvents } from '../../features/EventActions';
+
 
 const EventsCategory = () => {
     const [upcoming, setUpcoming] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [tab, setTab] = useState('Concert');
+
+    // const ticketPurchase = useSelector((state) => state.auth.ticketPurchase)
 
     const handleTab = (item) => {
         setTab(item)
@@ -25,7 +28,7 @@ const EventsCategory = () => {
 
     const handleTicket = (item) => {
         navigate('/ticketPage', {state: item});
-        // console.log(item)
+        // console.log(item.tickets)
     }
 
 

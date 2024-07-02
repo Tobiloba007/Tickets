@@ -25,7 +25,7 @@ const TrendingEvents = () => {
   const handleTicket = (item) => {
     navigate('/ticketPage', {state: item});
     // console.log(item)
-}
+  }
 
   return (
 

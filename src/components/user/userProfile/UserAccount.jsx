@@ -1,26 +1,36 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import avatar from '../../../assets/avatar.jpg'
 import camera from '../../../assets/icons/camera.svg'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { uploadPhoto } from '../../../features/UserActions';
 
 
 export const UserAccount = () => {
     const [profilePhoto, setProfilePhoto] = useState(null);
     const fileInputRef = useRef(null);
 
+    const dispatch = useDispatch();
 
-    const handleFileUpload = (event) => {
-        const file = event.target.files?.[0]; // Get the first file selected by the user
+
+      const handleFileUpload = (event) => {
+        const file = event.target.files?.[0];
         if (file) {
-          // Create a FileReader object to read the file
           const reader = new FileReader();
           reader.onloadend = () => {
-            // Set the profile photo state to the uploaded image data URL
-            setProfilePhoto(reader.result);
+
+            setProfilePhoto(event.target.files[0]);
+
+            const formData = new FormData();
+            formData.append('asset_type', 'image');
+            formData.append('asset', profilePhoto);
+            
+            dispatch(uploadPhoto(formData))
+            console.log(formData, 'DATA');
           };
-          reader.readAsDataURL(file); // Read the file as a data URL
+          reader.readAsDataURL(file); 
         }
       };
+
 
 
       const openFileInput = () => {

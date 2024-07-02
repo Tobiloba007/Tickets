@@ -5,6 +5,7 @@ import { UserHomeScroll } from '../../components/user/userHome/UserHomeScroll'
 import { UserRecommended } from '../../components/user/userHome/UserRecommended'
 import { UserHomeModal } from '../../components/modal/UserHomeModal'
 
+
 export const UserHome = () => {
   const [modal, setModal] = useState(false)
   const [user, setUser] = useState([]);
@@ -17,7 +18,7 @@ export const UserHome = () => {
     // Parse the JSON data if it exists
     if (storedItem) {
       setUser(JSON.parse(storedItem));
-      console.log(user)
+      console.log(user, 'user')
     }
   }, []);
 

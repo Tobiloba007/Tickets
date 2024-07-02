@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react'
 import Logo from '../../assets/userLogo.svg'
 import { TfiClose } from "react-icons/tfi";
 import Home from '../../assets/icons/home.svg'
-import Bookings from '../../assets/icons/bookings.svg'
-import Support from '../../assets/icons/support.svg'
-import Profile from '../../assets/icons/profile.svg'
+import Home2 from '../../assets/icons/home2.svg'
+import Bookings2 from '../../assets/icons/bookings.svg'
+import Bookings from '../../assets/icons/bookings2.svg'
+import Profile2 from '../../assets/icons/profile.svg'
+import Profile from '../../assets/icons/profile_2.svg'
+import Support2 from '../../assets/icons/support.svg'
+import Support from '../../assets/icons/support2.svg'
 import Avatar from '../../assets/avatar.jpg'
 import { VscMenu } from "react-icons/vsc";
 import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
@@ -29,26 +33,32 @@ export const UserDashboard = () => {
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 
+  const user = useSelector((state) => state.auth.user)
+
 
   const tabs = [
     {
       id: 1,
       icon: Home,
+      icon2: Home2,
       name: 'Overview'
     },
     {
       id: 2,
       icon: Bookings,
+      icon2: Bookings2,
       name: 'My Bookings'
     },
     {
       id: 3,
       icon: Profile,
+      icon2: Profile2,
       name: 'Profile'
     },
     {
       id: 4,
       icon: Support,
+      icon2: Support2,
       name: 'Support Channel'
     },
   ]
@@ -71,8 +81,6 @@ export const UserDashboard = () => {
     console.log(isLoggedIn);
    }, [])
 
-   const user = useSelector((state) => state.auth.user)
-
 
 
   return (
@@ -93,7 +101,7 @@ export const UserDashboard = () => {
                 <div key={item.id} onClick={()=>handleClick(item.id)}
                 className={`flex items-center justify-start px-5 py-[10px] my-2 rounded-lg w-[90%] ${select === item.id && 'bg-[#3D1130]'} hover:bg-[#3D1130]`}>
                   <img className='h-4'
-                  src={item.icon} alt="home" />
+                  src={select === item.id ? item.icon : item.icon2} alt="home" />
                   <p className={`text-xs ml-4 ${select === item.id ? 'text-white' : 'text-[#9F959C]'}`}>
                       {item.name}
                   </p>
@@ -123,7 +131,7 @@ export const UserDashboard = () => {
                 <div key={item.id} onClick={()=>handleClick(item.id)}
                 className={`flex items-center justify-start px-5 py-[10px] my-2 rounded-lg cursor-pointer w-[90%] ${select === item.id && 'bg-[#3D1130]'} hover:bg-[#3D1130] xl:my-3`}>
                   <img className='h-4 xl:h-5'
-                  src={item.icon} alt="home" />
+                  src={select === item.id ? item.icon : item.icon2} alt="home" />
                   <p className={`text-xs ml-3 ${select === item.id ? 'text-white' : 'text-[#9F959C]'} xl:text-sm xl:ml-4`}>
                       {item.name}
                   </p>
@@ -145,7 +153,7 @@ export const UserDashboard = () => {
                     src={Logo} alt="Logo" />
                     <p className='hidden lg:flex text-lg font-bold text-[#571845] xl:text-[22px]'>
                         {
-                          select === 1 ? 'Good day, Maimunah'
+                          select === 1 ? `Good day, ${user.first_name}`
                          :select === 2 ? 'My Bookings'
                          :select === 3 ? 'My Profile'
                          :select === 4 && 'Support Channel'

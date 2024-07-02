@@ -15,6 +15,8 @@ import { ResetPassword } from './pages/auth/ResetPassword';
 import Discover from './pages/Discover';
 import Pricing from './pages/Pricing';
 import { TicketPage } from './pages/TicketPage';
+import Demo from './pages/Demo';
+import { AdminDashboard } from './pages/admin/AdminDashboard';
 
 
 const App = () => {
@@ -36,6 +38,8 @@ const App = () => {
         <Route path="/ticketSuccess" Component={TicketSuccess} />
         <Route path="/userDashboard" Component={UserDashboard} />
         <Route path="/hostDashboard" Component={HostDashboard} />
+        <Route path="/adminDashboard" Component={AdminDashboard} />
+        <Route path="/demo" Component={Demo} />
       </Routes>
     </Router>
   );

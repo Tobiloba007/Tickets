@@ -47,8 +47,7 @@ export const LoginAccount = (values, setError, setLoading, navigate) => async (d
         localStorage.setItem('userData', JSON.stringify(userDetails));
         dispatch(setUser(userDetails))
         dispatch(setLoggedIn(true))
-
-
+        
         console.log(response.data.status);
         console.log(response.data);
         navigate(userDetails.user_type === 'host' ? '/hostDashboard' : userDetails.user_type === 'user' ?  '/userDashboard' : userDetails.user_type === 'null' && '/' )

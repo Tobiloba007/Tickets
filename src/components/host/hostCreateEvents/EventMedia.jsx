@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { SlNotebook } from "react-icons/sl";
 import { BsDownload } from "react-icons/bs";
 import { IoCheckmarkCircle } from "react-icons/io5";
@@ -9,19 +9,29 @@ import { MdDelete } from "react-icons/md";
 
 
 
-
 const EventMedia = ({setActive, active, setActiveForm}) => {
-    const [file, setFile] = useState(null);
+    const [images, setImages] = useState([]);
+    const [file, setFile] = useState(false);
+
     const [galleryFile, setGalleryFile] = useState(null);
+
+    const [video, setVideo] = useState(null);
+
       const [error, setError] = useState(null);
+
       const galleryFileInputRef = useRef(null);
       const fileInputRef = useRef(null);
+      const videoInputRef = useRef(null);
 
 
       const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
-        console.log(file);
+        const files = Array.from(event.target.files);
+        setImages((prevImages) => [...prevImages, ...files]);
      };
+
+     const handleRemoveImage = (index) => {
+        setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+      };
 
      const handleButtonClick = () => {
       fileInputRef.current.click();
@@ -32,6 +42,15 @@ const EventMedia = ({setActive, active, setActiveForm}) => {
         console.log(galleryFile);
      };
 
+     const handleVideoChange = (event) => {
+        setVideo(event.target.files[0]);
+        console.log(video);
+      };
+
+     const handleVideoButton = () => {
+        videoInputRef.current.click();
+    };
+
      const handleButton = () => {
       galleryFileInputRef.current.click();
     };
@@ -40,6 +59,10 @@ const EventMedia = ({setActive, active, setActiveForm}) => {
         // setActive(5)
         setActiveForm(2)
     }
+
+    useEffect(()=>{
+        console.log(file, 'Active file')
+    },[file])
 
   return (
     <div className='flex flex-col items-start justify-start w-full bg-white rounded-lg py-5 xl:py-9'>
@@ -77,28 +100,27 @@ const EventMedia = ({setActive, active, setActiveForm}) => {
                   </p>
               </div>
 
-
               <div className='flex flex-col items-center justify-center h-24 w-full border-[#C6C0C4] border-2 border-dashed rounded-md mt-4 px-5 md:h-16 xl:h-20'>
                      <input
                      className='hidden'
-                     ref={fileInputRef}
+                     ref={galleryFileInputRef}
                     type="file"
                     accept=".pdf, .jpg, .jpeg, .png"
-                    onChange={handleFileChange}
+                    onChange={handleGalleryFileChange}
                     />
                     <div className='flex flex-col items-center justify-center w-full md:flex-row'>
-                       <RxUpload onClick={handleButtonClick} className='text-xl text-[#571845] xl:text-2xl' />
+                       <RxUpload onClick={handleButton} className='text-xl text-[#571845] xl:text-2xl' />
                        <p className='text-xs text-center font-normal text-[#571845] mt-2 md:hidden'>
                            {file ? 'Change Image' : 'Upload Image'}
                        </p>
 
                         {/* TABLET >>> */}
-                       {file 
-                       ?<p onClick={handleButtonClick}
+                       {galleryFile 
+                       ?<p onClick={handleButton}
                        className='hidden md:flex text-xs text-center font-normal text-[#1A0313] mt-2 ml-2 xl:ml-3 xl:text-sm'>
                            Upload new image
                        </p>
-                       :<p onClick={handleButtonClick}
+                       :<p onClick={handleButton}
                        className='hidden md:flex text-xs text-center font-normal text-[#1A0313] mt-2 ml-2 xl:ml-3 xl:text-sm'>
                            Drag and drop image or <span className='text-[#571845] underline font-normal px-1 xl:underline-offset-2'>choose an Image</span> to upload
                        </p>
@@ -108,24 +130,26 @@ const EventMedia = ({setActive, active, setActiveForm}) => {
                      
               </div>
 
-              {file &&
+              {galleryFile &&
               <div className='flex items-center justify-between w-full bg-[#F6F5F6] rounded-md px-4 h-16 mt-4 md:px-6 xl:px-8 xl:h-20'>
                   <div className='flex items-start justify-start'>
-                     <BsFillImageFill className='h-8 w-8 text-[#837780] xl:w-11 xl:h-11' />
+                     <img className='w-8 h-8 rounded-md object-cover'
+                     src={URL.createObjectURL(galleryFile)}
+                     alt={'preview'}
+                      />
                      <div className='flex flex-col items-start ml-2 md:ml-3 xl:ml-4'>
                          <p className='text-[11px] text-[#1A0313] font-medium xl:text-sm'>
-                              {file.name}           
+                              {galleryFile.name}           
                          </p>
                          <p className='text-[9px] text-[#331F2D] font-medium pt-[2px] xl:text-sm'>
-                              {file.size}         
+                              {galleryFile.size}         
                          </p>
                      </div>
                   </div>
 
-                  <MdDelete onClick={()=>setFile(null)} className='text-[#837780] text-xl md:text-2xl xl:text-3xl' />
+                  <MdDelete onClick={()=>setGalleryFile(null)} className='text-[#837780] text-xl md:text-2xl xl:text-3xl' />
               </div>
               }
-
 
 
               <div className='w-full border-[1px] border-[#C6C0C4] mt-6 xl:mt-8'></div>
@@ -145,50 +169,58 @@ const EventMedia = ({setActive, active, setActiveForm}) => {
               <div className='flex flex-col items-center justify-center h-24 w-full border-[#C6C0C4] border-2 border-dashed rounded-md mt-4 px-5 md:h-16 xl:h-20'>
                      <input
                      className='hidden'
-                     ref={galleryFileInputRef}
+                     ref={fileInputRef}
                     type="file"
                     accept=".pdf, .jpg, .jpeg, .png"
-                    onChange={handleGalleryFileChange}
+                    onChange={handleFileChange}
+                    disabled={images.length >= 6}
                     />
                     <div className='flex flex-col items-center justify-center w-full md:flex-row'>
-                       <RxUpload onClick={handleButton} className='text-xl text-[#571845] xl:text-2xl' />
+                       <RxUpload onClick={handleButtonClick} className='text-xl text-[#571845] xl:text-2xl' />
                        <p className='text-xs text-center font-normal text-[#571845] mt-2 md:hidden'>
                            {file ? 'Change Image' : 'Upload Image'}
                        </p>
 
                         {/* TABLET >>> */}
-                       {galleryFile 
-                       ?<p onClick={handleButton}
+                       {images.length === 1 || images.length === 2 || images.length === 3 || images.length === 4 || images.length === 5
+                       ?<p onClick={handleButtonClick}
                        className='hidden md:flex text-xs text-center font-normal text-[#1A0313] mt-2 ml-2 xl:ml-3 xl:text-sm'>
                            Upload new image
                        </p>
-                       :<p onClick={handleButton}
+                       : images.length === 6
+                       ?<p onClick={handleButtonClick}
+                       className='hidden md:flex text-xs text-center font-normal text-red-400 mt-2 ml-2 xl:ml-3 xl:text-sm'>
+                            You have reached the maximum upload limit of <b className='pl-1'>6 images</b>
+                       </p>
+                       :<p onClick={handleButtonClick}
                        className='hidden md:flex text-xs text-center font-normal text-[#1A0313] mt-2 ml-2 xl:ml-3 xl:text-sm'>
                            Drag and drop image or <span className='text-[#571845] underline font-normal px-1 xl:underline-offset-2'>choose an Image</span> to upload
                        </p>
                        }
-                       {/*<div className='text-xs text-center text-medium text-red-500 mt-4 xl:text-sm'>{error}</div>*/}
                    </div>
                      
               </div>
 
-              {galleryFile &&
+              {images.map((image, index) => (
               <div className='flex items-center justify-between w-full bg-[#F6F5F6] rounded-md px-4 h-16 mt-4 md:px-6 xl:px-8 xl:h-20'>
                   <div className='flex items-start justify-start'>
-                     <BsFillImageFill className='h-8 w-8 text-[#837780] xl:w-11 xl:h-11' />
+                      <img className='w-8 h-8 rounded-md object-cover'
+                     src={URL.createObjectURL(image)}
+                     alt={`preview ${index}`}
+                      />
                      <div className='flex flex-col items-start ml-2 md:ml-3 xl:ml-4'>
                          <p className='text-[11px] text-[#1A0313] font-medium xl:text-sm'>
-                              {galleryFile.name}           
+                              {image.name}           
                          </p>
                          <p className='text-[9px] text-[#331F2D] font-medium pt-[2px] xl:text-sm'>
-                              {galleryFile.size}         
+                              {image.size}         
                          </p>
                      </div>
                   </div>
 
-                  <MdDelete onClick={()=>setGalleryFile(null)} className='text-[#837780] text-xl md:text-2xl xl:text-3xl' />
+                  <MdDelete onClick={() => handleRemoveImage(index)} className='text-[#837780] text-xl md:text-2xl xl:text-3xl' />
               </div>
-              }
+              ))}
 
 
 
@@ -206,26 +238,26 @@ const EventMedia = ({setActive, active, setActiveForm}) => {
               <div className='flex flex-col items-center justify-center h-24 w-full border-[#C6C0C4] border-2 border-dashed rounded-md mt-4 px-5 md:h-16 xl:h-20'>
                      <input
                      className='hidden'
-                     ref={galleryFileInputRef}
+                     ref={videoInputRef}
                     type="file"
-                    accept=".pdf, .jpg, .jpeg, .png"
-                    onChange={handleGalleryFileChange}
+                    accept="video/*"
+                    onChange={handleVideoChange}
                     />
                     <div className='flex flex-col items-center justify-center w-full md:flex-row'>
-                       <RxUpload onClick={handleButton} className='text-xl text-[#571845] xl:text-2xl' />
+                       <RxUpload onClick={handleVideoButton} className='text-xl text-[#571845] xl:text-2xl' />
                        <p className='text-xs text-center font-normal text-[#571845] mt-2 md:hidden'>
                            {file ? 'Change Image' : 'Upload Image'}
                        </p>
 
                         {/* TABLET >>> */}
-                       {galleryFile 
-                       ?<p onClick={handleButton}
+                       {video 
+                       ?<p onClick={handleVideoButton}
                        className='hidden md:flex text-xs text-center font-normal text-[#1A0313] mt-2 ml-2 xl:ml-3 xl:text-sm'>
                            Upload new video
                        </p>
-                       :<p onClick={handleButton}
+                       :<p onClick={handleVideoButton}
                        className='hidden md:flex text-xs text-center font-normal text-[#1A0313] mt-2 ml-2 xl:ml-3 xl:text-sm'>
-                           Drag and drop video or <span className='text-[#571845] underline font-normal px-1 xl:underline-offset-2'>choose an Video</span> to upload
+                           Drag and drop video or <span className='text-[#571845] underline font-normal px-1 xl:underline-offset-2'>choose a Video</span> to upload
                        </p>
                        }
                        {/*<div className='text-xs text-center text-medium text-red-500 mt-4 xl:text-sm'>{error}</div>*/}
@@ -233,21 +265,24 @@ const EventMedia = ({setActive, active, setActiveForm}) => {
                      
               </div>
 
-              {galleryFile &&
-              <div className='flex items-center justify-between w-full bg-[#F6F5F6] rounded-md px-4 h-16 mt-4 md:px-6 xl:px-8 xl:h-20'>
-                  <div className='flex items-start justify-start'>
-                     <BsFillImageFill className='h-8 w-8 text-[#837780] xl:w-11 xl:h-11' />
-                     <div className='flex flex-col items-start ml-2 md:ml-3 xl:ml-4'>
-                         <p className='text-[11px] text-[#1A0313] font-medium xl:text-sm'>
-                              {galleryFile.name}           
-                         </p>
-                         <p className='text-[9px] text-[#331F2D] font-medium pt-[2px] xl:text-sm'>
-                              {galleryFile.size}         
-                         </p>
+              {video &&
+              <div className='flex items-center justify-between w-full bg-[#F6F5F6] rounded-md px-4 py-3 mt-4 md:px-6 xl:px-8 '>
+                  <div className='flex items-start justify-start flex-wrap md:flex-nowrap'>
+                     <video className='w-full h-24 rounded-md object-cover md:w-48 xl:w-80 xl:h-32'>
+                       <source src={URL.createObjectURL(video)} type={video.type} />
+                     </video>
+                     <div className='flex items-center justify-between w-full mt-2 md:ml-12 md:w-[60%] xl:ml-16 xl:w-[50%]'>
+                         <div className='w-[90%] xl:w-full'>
+                             <p className='text-[11px] text-[#1A0313] font-medium xl:text-sm'>
+                                  {video.name}           
+                             </p>
+                             <p className='text-[9px] text-[#331F2D] font-medium pt-[2px] xl:text-sm'>
+                                  {video.size}         
+                             </p>
+                         </div>
+                         <MdDelete onClick={()=>setVideo(null)} className='text-[#837780] text-xl ml-4 md:text-2xl md:ml-0 xl:text-4xl xl:ml-8' />
                      </div>
                   </div>
-
-                  <MdDelete onClick={()=>setGalleryFile(null)} className='text-[#837780] text-xl md:text-2xl xl:text-3xl' />
               </div>
               }
 

@@ -33,3 +33,33 @@ export const createSupportTicket = (values, setError, setLoading, setSubject, se
     setLoading(false)
   
 };
+
+
+
+// UPLOAD PROFILE PHOTO
+export const uploadPhoto = (formData) => async (dispatch) => {
+  const Token = localStorage.getItem('token');
+  const headers = {
+    'Authorization': `Bearer ${Token}`,
+  };
+
+  try{
+    const response = await axios.post(`${BASE_URL}/general/assets`, formData, { headers });
+    if (response.status === 200) {
+      console.log(response.data);
+      console.log(Token);
+
+    } else if (response.status !== 200) {
+      console.log('Registration failed with status code:', response.status);
+    } 
+  } catch(error) {
+    console.log(Token, 'TOKEN');
+      if (error.response) {
+        console.log(error.response.data)
+        console.error('API Error:', error.response.status);
+      } else if (error.request) {
+        console.error('Network Error:', error.request);
+      } 
+    };
+  
+};
