@@ -1,0 +1,46 @@
+"use client"
+import React, { useEffect, useState } from 'react'
+import DiscoverIntro from '../components/discover/DiscoverIntro'
+import TrendingEvents from '../components/discover/TrendingEvents'
+import PopularEvents from '../components/discover/PopularEvents'
+import Footer from '../components/general/Footer'
+import GeneralEvent from '../components/discover/GeneralEvent'
+import { usePathname } from 'next/navigation'
+
+
+const Discover = () => {
+  const [selectAll, setSelectedAll] = useState(true);
+
+  const  pathname  = usePathname();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return (
+    <div className='font-outfit bg-[#FAFAFA]'>
+        <DiscoverIntro />
+        {
+          selectAll
+          ? <GeneralEvent />
+          :<div className='w-full'>
+            <TrendingEvents />
+            <PopularEvents />
+           </div>
+        }
+
+        <div className='flex items-center justify-center w-full mt-20 mb-20 md:mt-24'>
+             <button onClick={() => setSelectedAll(!selectAll)}
+             className='text-center text-white bg-[#571845] rounded-md font-medium h-9 px-7 text-xs lg:px-9 xl:h-11 xl:px-9 xl:text-base'>
+                   {
+                    selectAll ? 'View suggested events' : 'View all events'
+                   }
+             </button>
+        </div>
+
+        <Footer />
+    </div>
+  )
+}
+
+export default Discover
