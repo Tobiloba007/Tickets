@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { appConfig } from "./config/app";
 
 const config: Config = {
   content: [
@@ -11,10 +12,9 @@ const config: Config = {
       fontFamily: {
         outfit: ["var(--font-outfit)"],
       },
-      backgroundImage: {
-        "homeBg1": "url(img/",
-      
-      },
+    // colors:{
+    //   appConfig.colors
+    // }
     },
   },
   plugins: [],

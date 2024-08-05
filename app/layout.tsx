@@ -1,10 +1,13 @@
 import "@/styles/globals.css";
+import '@mantine/core/styles.css';
 import type { Metadata } from "next";
 
 
 import ReduxProvider from "@/redux/Provider";
 
 import { outfit } from "@/utils/fonts";
+import { MantineProvider } from "@mantine/core";
+import { theme } from "@/theme/app";
 
 
 export const metadata: Metadata = {
@@ -22,11 +25,18 @@ export default function RootLayout({
       <body className={`${outfit} `}>
         
 <ReduxProvider>
+  <MantineProvider
+  withCssVariables
+
+  withGlobalClasses
+  theme={theme}
+
+  >
 <div className="font-outfit">
 {children}
           
           </div>
-  
+          </MantineProvider>
 </ReduxProvider>
 
       </body>

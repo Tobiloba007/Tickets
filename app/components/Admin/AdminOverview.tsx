@@ -3,6 +3,9 @@ import React from 'react'
 import AdminRecentEventsTable from '../../components/Admin/overview/AdminRecentEventsTable'
 import Image from 'next/image'
 
+import LineChartComp from './overview/Linechart'
+import { Box, Text } from '@mantine/core'
+
 const AdminOverview = () => {
   return (
     <div className='flex-col items-center justify-start w-full h-screen overflow-y-scroll [&>div]:flex-shrink-0 hide-scrollbar mt-14 px-5 lg:px-6 xl:px-8'>
@@ -17,8 +20,14 @@ const AdminOverview = () => {
 
 
        <section className='flex flex-col items-center justify-start w-full mt-4 md:flex-row md:justify-between md:items-start'>
-           <div className='flex flex-col items-center justify-center w-full h-60 bg-white shadow rounded-md md:w-[54%] lg:h-[248px] xl:w-[59%] xl:h-[267px]'>
-                <LineChart/>
+           <div className='flex flex-col items-center bg-white justify-center w-full h-60 shadow rounded-md md:w-[54%] lg:h-[248px] xl:w-[59%] xl:h-[267px]'>
+            <Box className="text-purple">
+
+            </Box>
+              <Text className="flex">
+
+              </Text>
+                <LineChartComp/>
            </div>
 
            <div className='flex flex-col items-center w-full md:w-[44%] xl:w-[39%]'>
