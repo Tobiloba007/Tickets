@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import Avatar from '../../../assets/avatar.jpg'
+
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { MdFilterList } from "react-icons/md";
 
 
 
-
+const Avatar="/img/avatar.jpg"
 
 const AdminUsersTable = ({setOpenModal}) => {
     const [open, setOpen] = useState(false);

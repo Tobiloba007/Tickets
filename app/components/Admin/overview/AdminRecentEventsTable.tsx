@@ -1,9 +1,9 @@
 import React from 'react'
-import Event from '../../../assets/image11.jpg'
-import Avatar from '../../../assets/avatar.jpg'
+
+import Avatar from '/img/avatar.jpg'
 
 
-
+const  Event='/img/image11.jpg'
 
 const AdminRecentEventsTable = () => {
   return (
@@ -70,7 +70,7 @@ const AdminRecentEventsTable = () => {
                     <td className="px-4 py-3 border-t-[1px] border-[#E1DEE0] text-xs font-medium md:py-4 lg:py-5 xl:px-8 xl:py-6 xl:text-sm">30-01-2024</td>
                     <td className="px-4 py-3 border-t-[1px] border-[#E1DEE0] text-xs font-medium md:py-4 lg:py-5 xl:px-8 xl:py-6 xl:text-sm">
                          <div className="flex items-center justify-start">
-                             <img className="w-7 h-7 rounded-full object-cover" src={Avatar} alt="event_picture" />
+                             <img className="w-7 h-7 rounded-full object-cover" src={"/img/avatar.jpg"} alt="event_picture" />
                              <p className='w-full pl-[6px] text-[11px] text-[#571845] xl:text-sm xl:pl-2'>Kemi Adetiba</p>
                          </div>
                     </td>
@@ -94,7 +94,7 @@ const AdminRecentEventsTable = () => {
                     <td className="px-4 py-3 border-t-[1px] border-[#E1DEE0] text-xs font-medium md:py-4 lg:py-5 xl:px-8 xl:py-6 xl:text-sm">30-01-2024</td>
                     <td className="px-4 py-3 border-t-[1px] border-[#E1DEE0] text-xs font-medium md:py-4 lg:py-5 xl:px-8 xl:py-6 xl:text-sm">
                          <div className="flex items-center justify-start">
-                             <img className="w-7 h-7 rounded-full object-cover" src={Avatar} alt="event_picture" />
+                             <img className="w-7 h-7 rounded-full object-cover" src={"/img/avatar.jpg"} alt="event_picture" />
                              <p className='w-full pl-[6px] text-[11px] text-[#571845] xl:text-sm xl:pl-2'>Kemi Adetiba</p>
                          </div>
                     </td>
