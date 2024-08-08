@@ -2,6 +2,7 @@ import React from 'react'
 import Export from '../../assets/icons/export.svg'
 import AdminRecentEventsTable from '../../components/Admin/overview/AdminRecentEventsTable'
 
+
 const AdminOverview = () => {
   return (
     <div className='flex-col items-center justify-start w-full h-screen overflow-y-scroll [&>div]:flex-shrink-0 hide-scrollbar mt-14 px-5 lg:px-6 xl:px-8'>

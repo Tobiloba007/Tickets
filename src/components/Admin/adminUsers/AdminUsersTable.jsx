@@ -5,8 +5,6 @@ import { MdFilterList } from "react-icons/md";
 
 
 
-
-
 const AdminUsersTable = ({setOpenModal}) => {
     const [open, setOpen] = useState(false);
     const [select, setSelected] = useState('');
@@ -160,5 +158,6 @@ const AdminUsersTable = ({setOpenModal}) => {
     </div>
   )
 }
+
 
 export default AdminUsersTable
