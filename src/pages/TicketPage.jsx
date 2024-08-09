@@ -17,6 +17,8 @@ export const TicketPage = () => {
 
     useEffect(() => {
       window.scrollTo(0, 0);
+
+      console.log(state, 'intro');
     }, [pathname, state]);
 
     

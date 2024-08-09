@@ -4,13 +4,17 @@ import Navbar from '../general/Navbar'
 
 
 const TicketIntro = ({data}) => {
+  
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+
+
   return (
     <div className='flex flex-col items-center justify-start w-full'>
         <Navbar button1='Go to Dashboard' button2='Log out' link1='/' link2='/' />
 
         <div className='flex flex-col items-center justify-start w-full px-5 mt-5 md:px-8 lg:px-10 xl:px-16'>
             <div className='relative w-full h-[300px] flex flex-col items-center lg:mt-2 md:h-[350px] lg:h-[450px] xl:mt-5 xl:h-[600px]'
-            style={{backgroundImage: `url(${bg})`, backgroundRepeat:'no-repeat', backgroundSize: 'cover'}}>
+            style={{backgroundImage: `url(${baseUrl + data.images[0]})`, backgroundRepeat:'no-repeat', backgroundSize: 'cover'}}>
                 <div className='flex flex-col items-center justify-center h-full w-full bg-[#000000] opacity-30'></div>
                 <div className='absolute top-[45%] flex flex-col items-center justify-center w-full z-50 xl:top-[50%]'>
                     <button className='text-center text-xs h-6 rounded-md text-[#2F2623] bg-[#FFDE9C] px-4 lg:h-8 lg:px-6 lg:font-medium 

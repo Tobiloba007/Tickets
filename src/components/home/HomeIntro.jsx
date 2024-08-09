@@ -5,8 +5,9 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { recentEvents } from '../../features/EventActions';
 
 
 
@@ -16,6 +17,24 @@ const HomeIntro = () => {
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 
     const user = useSelector((state) => state.auth.user)
+
+    const [recent, setRecent] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(recentEvents(setRecent, setLoading, setError))
+  }, [dispatch])
+
+
+  const handleTicket = (item) => {
+    navigate('/ticketPage', {state: item});
+    // console.log(item)
+  }
+
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
 
       
@@ -64,45 +83,22 @@ const HomeIntro = () => {
                 modules={[Autoplay, Pagination]}
                 className="flex flex-row items-center justify-center w-full"
               >
-                <SwiperSlide className='relative flex items-center justify-center w-full'>
-                    <img className='h-[490px] rounded-3xl w-full object-cover xl:h-full'
-                    src={carousel1} alt="carousel1" />
+                {recent.map((item) => (
+                <SwiperSlide key={item?.id} onClick={()=>handleTicket(item)}
+                 className='relative flex items-center justify-center w-full'>
+                    <img className='h-[450px] rounded-3xl w-full object-cover xl:h-[600px]'
+                    src={baseUrl + item.images[0]} alt="carousel1" />
                     <div className='absolute bottom-5 left-4 flex flex-col items-start justify-center w-full z-30 md:left-8 md:bottom-7 lg:left-12 lg:bottom-10'>
                           <p className='text-[9px] font-bold text-white md:text-xs xl:text-base xl:mb-1'>
-                              Thurs Dec 21st, 2023
+                               {item?.time_and_date?.slice(0, 10)}
                           </p>
-                          <p className='text-[17px] font-semibold text-white md:text-2xl lg:text-[27px] xl:text-[35px]'>
-                              Soundland Concert
+                          <p className='text-[17px] font-semibold text-white pb-3 md:text-2xl lg:text-[27px] xl:text-[35px]'>
+                              {item?.event_name}
                           </p>
                     </div>
                     <div className="absolute inset-0 bg-gray-900 opacity-30 rounded-3xl"></div>
                 </SwiperSlide>
-                <SwiperSlide className='relative flex items-center justify-center w-full'>
-                    <img className='h-[490px] rounded-3xl w-full object-cover xl:h-full'
-                    src={carousel1} alt="carousel1" />
-                    <div className='absolute bottom-5 left-4 flex flex-col items-start justify-center w-full z-30 md:left-8 md:bottom-7 lg:left-12 lg:bottom-10'>
-                          <p className='text-[9px] font-bold text-white md:text-xs xl:text-base xl:mb-1'>
-                              Thurs Dec 21st, 2023
-                          </p>
-                          <p className='text-[17px] font-semibold text-white md:text-2xl lg:text-[27px] xl:text-[35px]'>
-                              Soundland Concert
-                          </p>
-                    </div>
-                    <div className="absolute inset-0 bg-gray-900 opacity-30 rounded-3xl"></div>
-                </SwiperSlide>
-                <SwiperSlide className='relative flex items-center justify-center w-full'>
-                    <img className='h-[490px] rounded-3xl w-full object-cover xl:h-full'
-                    src={carousel1} alt="carousel1" />
-                    <div className='absolute bottom-5 left-4 flex flex-col items-start justify-center w-full z-30 md:left-8 md:bottom-7 lg:left-12 lg:bottom-10'>
-                          <p className='text-[9px] font-bold text-white md:text-xs xl:text-base xl:mb-1'>
-                              Thurs Dec 21st, 2023
-                          </p>
-                          <p className='text-[17px] font-semibold text-white md:text-2xl lg:text-[27px] xl:text-[35px]'>
-                              Soundland Concert
-                          </p>
-                    </div>
-                    <div className="absolute inset-0 bg-gray-900 opacity-30 rounded-3xl"></div>
-                </SwiperSlide>
+                ))}
               </Swiper>
         </div>
 

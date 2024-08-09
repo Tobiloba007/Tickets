@@ -6,7 +6,9 @@ import Navbar from '../general/Navbar';
 
 
 
-const BlogIntro = () => {
+const BlogIntro = ({loading, blogsData}) => {
+    const baseUrl = process.env.REACT_APP_BASE_URL;
+
   return (
     <div className='flex flex-col items-center justify-start w-full xl:mb-10'>
         <Navbar button1='Login' button2='Sign Up' link1='/login' link2='/signup1' />
@@ -19,7 +21,7 @@ const BlogIntro = () => {
             <div className='flex flex-col items-start justify-start w-full bg-white py-14 px-5 rounded-md mt-8 md:mt-14 md:flex-row lg:items-center xl:mt-16 xl:px-10 xl:py-20'>
                 <div className='w-full h-full'>
                    <img className='w-full h-full' 
-                   src={image1} alt="intro_image" />
+                   src={baseUrl + blogsData[0]?.article_spotlight_image} alt="intro_image" />
                 </div>
 
                 <div className='flex flex-col items-start justify-start w-full mt-10 md:ml-8 md:mt-0 xl:ml-12'>
@@ -27,7 +29,7 @@ const BlogIntro = () => {
                         General
                     </p>
                     <p className='text-[22px] font-semibold text-[#331F2D] mt-1 leading-7 lg:text-3xl lg:my-3 xl:text-[35px] xl:leading-[45px] xl:my-4'>
-                        How to create your own <br /> event on Umscope 
+                         {blogsData[0]?.article_title} 
                     </p>
                     <div className='flex flex-row items-start justify-start w-full mt-4 lg:mb-2'>
                         <img className='w-[34px] h-[34px] object-cover rounded-full lg:w-[40px] lg:h-[40px] xl:w-[60px] xl:h-[60px]'
@@ -37,12 +39,12 @@ const BlogIntro = () => {
                                    Oluwatobi Joseph 
                             </p>
                             <p className='text-[11px] font-normal text-[#766871] lg:text-xs xl:text-base xl:mt-2'>
-                                   3rd Jan, 2023 
+                                  {blogsData[0]?.created_at?.slice(0, 10)}  
                             </p>
                         </div>
                     </div>
                     <p className='text-[11px] font-normal text-[#766871] mt-5 w-[85%] lg:w-[55%] lg:text-xs xl:text-base xl:mt-7'>
-                          Worry less about your event ticket, payment and fees. All you need is Umscope. 
+                          {blogsData[0]?.aricle_text}  
                     </p>
                     <div className='flex flex-row items-center justify-start mt-2 lg:mt-5 xl:mt-8'>
                          <p className='text-xs font-semibold text-[#571845] lg:text-sm xl:text-base'>

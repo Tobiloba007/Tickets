@@ -79,7 +79,7 @@ const TicketCheckout = (props) => {
                                py-10 mt-5 shadow-slate-500 lg:py-7 lg:pb-12 xl:pb-16 xl:px-6'>
                   <div className='flex flex-col items-start w-full px-4'>
                       <p className='text-lg text-[#331F2D] font-semibold lg:text-xl xl:text-2xl'>
-                           {}
+                           {props.data.event_name}
                       </p>
                       <div className='flex items-center justify-start w-full mt-3'>
                           <img className="w-6 h-6 xl:w-7 xl:h-7"

@@ -15,6 +15,7 @@ const Discover = () => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
+
   return (
     <div className='font-outfit bg-[#FAFAFA]'>
         <DiscoverIntro />
