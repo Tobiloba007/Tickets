@@ -14,6 +14,9 @@ colors:{
         950: '#C2CFD6',
         955:"#F6F7FC"
       },
-    "purple":"571845"
+    "purple":"#571845",
+    "success":"#4BB543",
+    "neutral":"#766871",
+    "neutral-100":"#331F2D"
 }
 }

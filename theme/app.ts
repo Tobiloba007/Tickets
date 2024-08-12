@@ -23,10 +23,10 @@ colors:{
 
     components:{
         Button:{
-            defaultProps:{
-                size:'lg',
-                color:'teal'
-            }
+            // defaultProps:{
+            //     size:'lg',
+            //     color:''
+            // }
         }
     },
     fontFamily: 'GeneralSans',

@@ -1,12 +1,10 @@
 "use client"
 import React, { useState } from 'react'
-import BlogCard from '../adminBlog/BlogCard'
+
 import { Portal } from '@mantine/core'
-import SuspendAcctModal from "./adminUsers/SuspendAcctModal";
-import DeactivateModal from "./adminUsers/DeactivateModal";
-import ActivateModal from "./adminUsers/ActivateModal";
-import DeleteModal from "./adminUsers/DeleteModal";
-import CreateBlogModal from './adminUsers/CreateBlogModal.tsx';
+import CreateBlogModal from '@/app/components/Admin/adminUsers/CreateBlogModal.tsx'
+import BlogCard from '@/app/components/adminBlog/BlogCard'
+
 
 const AdminBlogs = () => {
   const [openModal, setOpenModal] = useState(false);

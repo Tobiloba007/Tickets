@@ -28,7 +28,7 @@ import HostWallet from '../host/HostWallet';
 import HostPackage from '../host/HostPackage';
 import HostCheckIn from '../host/HostCheckIn';
 import HostOverview from '../host/HostOverview';
-import HostCreateEvents from '../host/HostCreateEvents';
+import HostCreateEvents from '../components/Admin/AdminCreateEvents';
 import HostEvents from '../host/HostEvents';
 import { useRouter } from 'next/navigation';
 

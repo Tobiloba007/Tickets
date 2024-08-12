@@ -1,19 +1,62 @@
+"use client"
+import { Button, Tooltip } from '@mantine/core'
 import React from 'react'
+import { MdFilterList, MdSort } from 'react-icons/md'
 
-import Avatar from '/img/avatar.jpg'
+
 
 
 const  Event='/img/image11.jpg'
+type eventType={
+  name:string,
+  category:string
+  price:string
+  status:string
+  date:string
+  host:string
+} 
 
-const AdminRecentEventsTable = () => {
+type events= eventType[]
+interface EventsTable{
+  events?:events
+  displayrecent:boolean
+}
+const AdminRecentEventsTable = ({
+  events,
+  displayrecent=false
+}:EventsTable) => {
   return (
     <div className='flex flex-col items-center justify-start w-full mt-3 mb-16 md:mt-2 lg:mt-3 xl:mt-4'>
+{displayrecent?(
+ <div className='flex items-center justify-center w-full md:mt-2'>
+ <div className='flex items-center justify-between px-5 bg-red-100 h-14 rounded-t-2xl w-full mt-5 pt-2 border-b-[1px] border-[#dddddd] md:mt-2 xl:px-8 xl:h-16'>
+      <p className='text-sm text-[#571845] font-medium xl:text-lg'>Recent Events </p>
+ </div>
+</div>
 
-       <div className='flex items-center justify-center w-full md:mt-2'>
-              <div className='flex items-center justify-between px-5 bg-red-100 h-14 rounded-t-2xl w-full mt-5 pt-2 border-b-[1px] border-[#dddddd] md:mt-2 xl:px-8 xl:h-16'>
-                   <p className='text-sm text-[#571845] font-medium xl:text-lg'>Recent Events </p>
+):(
+  <div className='flex items-center justify-center w-full md:mt-2'>
+              <div className='flex items-center justify-between px-5 bg-white h-14 rounded-t-2xl w-full mt-5 pt-2 border-b-[1px] border-[#dddddd] md:mt-2 xl:px-8 xl:h-16'>
+                   <p className='text-sm text-[#571845] font-medium xl:text-lg'>Events</p>
+                   <div className='flex items-center'>
+                   <Tooltip label="Filter">
+      <Button className='bg-white hover:bg-white '><MdFilterList className='text-[#292D32] w-6 md:w-7 xl:text-xl' /></Button>
+    </Tooltip>
+                         
+                         {/* <p className='text-[10px] text-[#292D32] font-medium md:pl-1 md:text-[11px] xl:text-[13px] cursor-pointer hover:underline'>Filter  </p> */}
+                         <Tooltip label="Category">
+      <Button className='bg-white hover:bg-white '><MdSort className='text-[#292D32] w-6 md:w-7 xl:text-xl' /></Button>
+    </Tooltip>
+                        
+                         {/* <p className='text-[10px] text-[#292D32] font-medium md:pl-1 md:text-[11px] xl:text-[13px] cursor-pointer hover:underline'>Sort  </p> */}
+                   </div>
               </div>
+
        </div>
+)
+
+}
+       
     
        <div className="overflow-x-auto w-full hide-scrollbar">
                 <table className="table-auto border-collapse w-full rounded-lg border-[1px] border-[#00000]">
