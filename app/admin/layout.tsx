@@ -98,7 +98,7 @@ type TabsType=TabType[]
       id: 5,
       icon: Support2,
       icon2: Support,
-      link:"/admin/Support",
+      link:"/admin/support",
       name: 'Support'
     },
     {

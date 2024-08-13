@@ -1,13 +1,16 @@
+"use client"
 import React, { useState } from "react";
-import AdminRecentEventsTable from "./overview/AdminRecentEventsTable";
-import AdminUsersTable from "./adminUsers/AdminUsersTable";
-import SuspendAcctModal from "./adminUsers/SuspendAcctModal";
-import DeactivateModal from "./adminUsers/DeactivateModal";
-import ActivateModal from "./adminUsers/ActivateModal";
-import DeleteModal from "./adminUsers/DeleteModal";
+import { useRouter } from "next/navigation";
+import AdminRecentEventsTable from "@/app/components/Admin/overview/AdminRecentEventsTable";
+// import AdminUsersTable from "./adminUsers/AdminUsersTable";
+// import SuspendAcctModal from "./adminUsers/SuspendAcctModal";
+// import DeactivateModal from "./adminUsers/DeactivateModal";
+// import ActivateModal from "./adminUsers/ActivateModal";
+// import DeleteModal from "./adminUsers/DeleteModal";
 
 const AdminEvents = () => {
   const [openModal, setOpenModal] = useState(false);
+  const router=useRouter()
   const events = [
     {
       name: "string",
@@ -20,11 +23,11 @@ const AdminEvents = () => {
   ];
   return (
     <div className="flex-col items-center justify-center w-full h-full overflow-y-scroll [&>div]:flex-shrink-0 hide-scrollbar mt-7 px-5 lg:px-6 xl:px-8">
-{/* create blog BUTTON */}
+{/* create event BUTTON */}
 <section className="flex justify-end w-full">
         <div
         onClick={()=>{
-          setOpenModal(true)
+          router.push("events/create")
         }}
         className="flex items-center justify-center bg-[#571845] hover:scale-110 transition cursor-pointer h-8 px-5 rounded-md ml-3 md:h-[30px] md:ml-2 lg:px-6 xl:h-10 xl:ml-3">
         <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">

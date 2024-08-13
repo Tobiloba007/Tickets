@@ -17,6 +17,7 @@ colors:{
     "purple":"#571845",
     "success":"#4BB543",
     "neutral":"#766871",
-    "neutral-100":"#331F2D"
+    "neutral-100":"#331F2D",
+    "neutral-200":"#FFF9EE"
 }
 }
